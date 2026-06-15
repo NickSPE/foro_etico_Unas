@@ -1,0 +1,750 @@
+\documentclass[12pt,a4paper]{article}
+
+% --- PAQUETES OBLIGATORIOS Y CONFIGURACIÓN NORMAS UNAS ---
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{mathptmx} % Equivalente Times New Roman para LaTeX
+\usepackage[a4paper, top=3cm, left=3cm, right=2cm, bottom=2cm]{geometry}
+\usepackage{setspace}
+\onehalfspacing % Interlineado 1.5
+\setlength{\headheight}{14.5pt}
+\hbadness=10000
+\hfuzz=120pt
+
+% --- CONFIGURACIÓN DE PÁRRAFOS Y SANGRÍA ---
+\setlength{\parindent}{1.27cm} % Sangría UNAS de 1.27 cm
+\setlength{\parskip}{0pt}      % Espaciado cero entre párrafos
+
+% --- NUMERACIÓN SUPERIOR DERECHA ---
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\thepage} % Numeración arriba a la derecha
+\renewcommand{\headrulewidth}{0pt} % Sin línea horizontal en el encabezado
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \rhead{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% --- OTROS PAQUETES DE UTILIDAD ---
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{pdflscape}
+\usepackage{hanging}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows, positioning}
+
+% --- CONFIGURACIÓN DE TÍTULOS Y CAPTIONS NORMAS UNAS ---
+\usepackage{titlesec}
+\usepackage[format=hang, justification=justified, singlelinecheck=false]{caption}
+
+% Redefinición de numeración de secciones según UNAS (Capítulos en romano, subcapítulos arábigos con punto final)
+\renewcommand{\thesection}{\Roman{section}}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}.}
+\renewcommand{\thesubsubsection}{\arabic{section}.\arabic{subsection}.\arabic{subsubsection}.}
+
+% Estilización de títulos con titlesec
+\titleformat{\section}[block]{\fontsize{12}{14}\selectfont\bfseries\centering}{\thesection.\ }{0pt}{\uppercase}
+\titleformat{\subsection}[block]{\fontsize{12}{14}\selectfont\bfseries}{\thesubsection\ }{0pt}{}
+\titleformat{\subsubsection}[block]{\fontsize{12}{14}\selectfont\bfseries}{\thesubsubsection\ }{0pt}{}
+
+\hypersetup{
+    colorlinks=true,
+    hypertexnames=false,
+    linkcolor=black,
+    citecolor=black,
+    urlcolor=black
+}
+
+% Estilo para bloques de código y anexos
+\lstset{
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single,
+    showstringspaces=false
+}
+
+% --- INICIO DEL DOCUMENTO ---
+\begin{document}
+
+% ==========================================
+% PORTADA OFICIAL UNAS
+% ==========================================
+\begin{titlepage}
+    \begin{center}
+        \setstretch{1.1}
+        {\fontsize{14}{16}\selectfont\textbf{UNIVERSIDAD NACIONAL AGRARIA DE LA SELVA}} \\[0.3cm]
+        {\fontsize{13}{15}\selectfont\textbf{FACULTAD DE INGENIERÍA EN INFORMÁTICA Y SISTEMAS}} \\[0.2cm]
+        {\fontsize{12}{14}\selectfont\textbf{ESCUELA PROFESIONAL DE INGENIERÍA DE SISTEMAS}} \\[0.4cm]
+        
+        % Bloques para logos institucionales
+        \begin{minipage}{0.45\textwidth}
+            \centering
+            \includegraphics[height=8cm,keepaspectratio]{logounas.png}
+        \end{minipage}
+        \hfill
+        \begin{minipage}{0.45\textwidth}
+            \centering
+            \includegraphics[height=5cm,keepaspectratio]{LOGO-FIIS-1000x1000-TR.png}
+        \end{minipage}\\[0 cm]
+        
+        % Línea divisoria elegante
+        \rule{\linewidth}{1.5pt} \\[0.6cm]
+        
+        % Título del proyecto
+        {\fontsize{14}{18}\selectfont\textbf{PLAN DE ACCIONES SOBRE EL IMPACTO DE LA ÉTICA PROFESIONAL DEL INGENIERO EN INFORMÁTICA Y SISTEMAS EN LA PRÁCTICA LABORAL}} \\[0.6cm]
+        
+        \rule{\linewidth}{1.5pt} \\[1.5cm]
+        
+        % Información del curso y autores
+        \setstretch{1.5}
+        \begin{minipage}{0.85\textwidth}
+            \begin{flushleft}
+                \begin{tabular}{@{}p{3cm}p{10cm}@{}}
+                    \textbf{Curso:} & Ética y práctica profesional \\[0.2cm]
+                    \textbf{Autores:} & Evaristo Jara, Jose Junior \\
+                                      & Tapullima Serna, Meselemias \\[0.2cm]
+                    \textbf{Docente:} & Dr. Pozo Malpartida, Jorge Luis \\[0.2cm]
+                    \textbf{Ciclo:} & 2026-I \\[0.2cm]
+                \end{tabular}
+            \end{flushleft}
+        \end{minipage}
+        
+        \vfill
+        
+        % Ubicación y Fecha
+        {\fontsize{12}{14}\selectfont\textbf{Tingo María -- Perú}} \\[0.2cm]
+        {\fontsize{12}{14}\selectfont\textbf{2026}}
+    \end{center}
+\end{titlepage}
+
+\newpage
+
+% ==========================================
+% PRELIMINARES
+% ==========================================
+\pagenumbering{roman} % Numeración romana para preliminares
+
+% --- INDICES ---
+\setstretch{1.5}
+\tableofcontents
+\newpage
+
+\listoftables
+\newpage
+
+\listoffigures
+\newpage
+
+% --- RESUMEN ---
+\begin{abstract}
+\noindent El presente documento expone la formulación, diseño y metodología del ``Plan de Acciones sobre el Impacto de la Ética Profesional del Ingeniero en Informática y Sistemas en la Práctica Laboral'', una propuesta de intervención institucional y técnica para la Universidad Nacional Agraria de la Selva (UNAS). Este plan aborda sistemáticamente la mitigación de fallas deontológicas en el ejercicio laboral y promueve la adopción de prácticas responsables en el desarrollo de software y administración de sistemas. Delimitado en un cronograma estricto de 80 días, que abarca desde el \textbf{20 de abril} hasta la entrega final el \textbf{8 de julio de 2026}, el plan articula nueve fases consecutivas estructuradas mediante la metodología de mejora continua (Ciclo PHVA) y el análisis de la técnica de Camino Crítico (CPM). La justificación de esta propuesta parte de la alarmante recurrencia de malas prácticas en la industria tecnológica local y nacional, tales como fugas de información confidencial, negligencia en la seguridad de datos, sesgos de diseño algorítmico y uso indebido de propiedad intelectual. A través de acciones preventivas, operativas y de control ---como la implementación de lineamientos de Privacidad por Diseño (PbD), auditorías éticas de código de manera automatizada, y el fortalecimiento de comités éticos universitarios--- se busca generar un impacto constructivo progresivo a nivel individual, organizacional y social en la región del Alto Huallaga y en el Perú. Se concluye que un riguroso apego al cronograma propuesto y la alineación de las decisiones de ingeniería con los códigos deontológicos globales y nacionales resultan pilares fundamentales para elevar los estándares competitivos y cívicos de nuestros futuros egresados.
+
+\vspace{0.5cm}
+\noindent \textbf{Palabras clave:} Ética profesional, ingeniería de sistemas, práctica laboral, plan de acciones, ciclo PHVA, Universidad Nacional Agraria de la Selva.
+\end{abstract}
+
+\newpage
+
+% --- ABSTRACT ---
+\renewcommand{\abstractname}{ABSTRACT}
+\begin{abstract}
+\noindent This document outlines the formulation, design, and methodology of the ``Action Plan on the Impact of Professional Ethics in Computer Science and Systems Engineering within Labor Practice,'' an institutional and technical intervention proposed for the Universidad Nacional Agraria de la Selva (UNAS). This plan systematically addresses the mitigation of deontological breaches in professional practice while promoting the adoption of responsible standards in software development and systems administration. Scheduled within a strict 80-day timeline, running from \textbf{April 20} to its official completion on \textbf{July 8, 2026}, the plan coordinates nine consecutive phases structured around the continuous improvement framework (PDCA Cycle) and Critical Path Method (CPM) analysis. The justification for this proposal stems from the alarming prevalence of bad practices within the local and national technology industries, including data leaks, negligence in information security, algorithmic bias in system designs, and intellectual property infringement. By deploying preventive, operational, and monitoring actions ---such as Privacy by Design (PbD) principles, automated ethical code reviews, and the reinforcement of academic ethics boards--- the project aims to foster progressive constructive impacts at individual, organizational, and social levels across the Alto Huallaga region and the entire nation. It is concluded that strict adherence to the project timeline and the alignment of software engineering decisions with national and global deontological codes are essential cornerstones to raising the competitive and civic standards of future graduates.
+
+\vspace{0.5cm}
+\noindent \textbf{Keywords:} Professional ethics, systems engineering, labor practice, action plan, PDCA cycle, Universidad Nacional Agraria de la Selva.
+\end{abstract}
+
+\newpage
+\pagenumbering{arabic} % Inicio de numeración arábiga para el cuerpo del documento
+
+% ==========================================
+% I. INTRODUCCIÓN
+% ==========================================
+\section{INTRODUCCIÓN}
+\thispagestyle{empty}
+
+\subsection{Alineamiento Estratégico Institucional: Misión, Visión y Principios de la UNAS}
+La formulación e implementación del ``Plan de Acciones sobre el Impacto de la Ética Profesional del Ingeniero en Informática y Sistemas en la Práctica Laboral'' no representa un esfuerzo meramente administrativo o conceptual. Por el contrario, se constituye en un instrumento dinámico socio-técnico alineado orgánicamente con los fines misionales, la visión de futuro y la sólida base axiológica que rigen a la Universidad Nacional Agraria de la Selva.
+
+\subsubsection{Alineamiento con la Visión de la UNAS}
+La Visión institucional de la UNAS consagra el compromiso del centro de estudios de ser una:
+\begin{quote}
+    \textit{“Institución universitaria líder e innovadora en la formación de profesionales, con valores y estándares de calidad, comprometida con la biodiversidad y la gestión integral para el desarrollo sostenible del país y el mundo” (UNAS, 2021).}
+\end{quote}
+
+El plan de acciones éticas responde a esta visión a través de dos directrices esenciales:
+\begin{itemize}
+    \item \textbf{Liderazgo y Calidad Profesional:} Elevar la competitividad técnica del egresado mediante la interiorización de estándares de calidad que integren principios éticos globales. Un ingeniero que domina la ética y la deontología se destaca en el mercado laboral global por su confiabilidad y responsabilidad.
+    \item \textbf{Compromiso Socio-Ambiental:} Al aplicarse en la Amazonía peruana, el plan orienta las decisiones tecnológicas del ingeniero hacia la protección de datos relacionados con la biodiversidad, proyectos ambientales locales y la gobernanza comunitaria en entornos vulnerables.
+\end{itemize}
+
+\subsubsection{Alineamiento con la Misión de la UNAS}
+La Misión de nuestra casa de estudios establece lo siguiente:
+\begin{quote}
+    \textit{“La UNAS forma profesionales integrales, genera y transfiere conocimientos científico, tecnológico y humanístico a los estudiantes; con responsabilidad social y compromiso con el desarrollo sostenible y competitividad del país” (UNAS, 2021).}
+\end{quote}
+
+El plan actúa como un agente de transferencia transversal de conocimiento humanístico y tecnológico. Promueve que la formación técnica en sistemas de información no esté disociada de su impacto social, dotando a los alumnos de herramientas teóricas y metodológicas para enfrentar dilemas morales en sus prácticas preprofesionales y futuro desempeño en organizaciones públicas y privadas, incrementando así la competitividad ética de la nación.
+
+\subsubsection{Operativización de los Principios Institucionales de la UNAS en la Práctica Laboral}
+Para garantizar que la base axiológica de la universidad guíe el comportamiento de los estudiantes al insertarse al mercado laboral, el plan operativiza los ocho Principios Institucionales de la UNAS (UNAS, 2021) en acciones concretas del ingeniero en informática y sistemas:
+
+\begin{enumerate}
+    \item \textbf{Respeto:} Traducido en el resguardo absoluto de los derechos de propiedad intelectual, la privacidad y la confidencialidad de la información de los usuarios del software que el ingeniero diseña, impidiendo cualquier práctica que vulnere la dignidad humana.
+    \item \textbf{Probidad:} Actuar con rectitud e incorruptibilidad en la gestión de proyectos de tecnologías de la información (TI), rechazando sobornos en licitaciones de hardware o software y evitando la entrega de sistemas deficientes o con vulnerabilidades ocultas.
+    \item \textbf{Eficiencia:} Optimización racional de los recursos de hardware y servidores en el entorno laboral. Diseñar algoritmos de alto rendimiento con bajo consumo computacional para reducir la huella de carbono y los costes de infraestructura.
+    \item \textbf{Idoneidad:} El ingeniero debe comprometerse con la formación continua y el autoaprendizaje riguroso, asumiendo tareas de desarrollo, ciberseguridad o administración de bases de datos solo si cuenta con las competencias técnicas requeridas para ejecutarlas de forma segura.
+    \item \textbf{Veracidad:} Resguardo de la integridad de los datos. En el ámbito de base de datos e inteligencia artificial, asegurar que los sistemas reporten métricas reales y no alteradas, rechazando la manipulación de información comercial, social o técnica.
+    \item \textbf{Lealtad y Obediencia:} Cumplimiento estricto de las directivas y códigos internos de las organizaciones y comités éticos profesionales, subordinando los intereses particulares a la misión institucional y al bienestar colectivo de los clientes.
+    \item \textbf{Justicia y Equidad:} Diseñar algoritmos libres de sesgos discriminatorios (por género, raza, estatus económico o nacionalidad) en sistemas de selección o evaluación automática, promoviendo la inclusión digital en cada software desarrollado.
+    \item \textbf{Lealtad al Estado de Derecho:} Cumplimiento ineludible de la legislación informática peruana vigente, como la Ley de Protección de Datos Personales (Ley N.{\circ} 29733) y la Ley de Delitos Informáticos (Ley N.{\circ} 30096), diseñando sistemas alineados a la legalidad y soberanía digital nacional.
+\end{enumerate}
+
+\subsection{Problemática Ética y la Práctica Laboral del Ingeniero en Informática y Sistemas}
+La rápida transformación digital global ha colocado al ingeniero de sistemas e informática en una posición de alta responsabilidad social y de poder técnico sobre las organizaciones. Sin embargo, este crecimiento tecnológico no ha venido acompañado de un desarrollo paralelo de la conciencia ética corporativa. En el ámbito laboral regional y nacional, se observa un incremento de conductas negligentes y malas prácticas que menoscaban la confianza pública en la tecnología.
+
+La problemática radica en desafíos críticos como la fuga involuntaria o intencionada de datos sensibles, el despliegue de software con fallos de seguridad críticos no testeados por presiones comerciales, el plagio y uso indebido de bibliotecas de software sin respetar los términos de licenciamiento abierto o comercial, y la manipulación de bases de datos para encubrir ineficiencias organizacionales. Estas conductas, amparadas a veces por la falta de auditorías rigurosas o la escasa formación humanística de los desarrolladores, generan deudas técnicas insostenibles y exponen a las empresas e instituciones del Alto Huallaga a severas pérdidas económicas y de reputación.
+
+\subsection{Necesidad de un Plan de Acción Ético en la Práctica Laboral}
+Frente a este escenario, resulta imperativo contar con un plan sistemático que estructure, oriente y evalúe la conducta profesional de los ingenieros formados en la UNAS al ingresar a entornos laborales de desarrollo o gestión de TI. No basta con el conocimiento abstracto de la ética; se requiere la implantación de una guía operativa de decisiones, auditorías periódicas, indicadores de cumplimiento ético y capacitaciones dirigidas a operativizar el discernimiento moral ante dilemas de software reales.
+
+Este plan de acciones preventivas, correctivas y formativas proporcionará las bases organizacionales necesarias para vincular el rigor técnico de la ingeniería de software con los principios éticos, transformando el comportamiento del profesional en un activo estratégico para la calidad de los sistemas y el desarrollo responsable de la sociedad.
+
+\subsection{Importancia de la Ética Profesional y su Impacto en el Ejercicio de la Ingeniería}
+La ética en informática no es un requerimiento opcional o puramente decorativo; constituye una dimensión de carácter normativo, metodológico y técnico que define la estabilidad a largo plazo de cualquier sistema de información. La forma en que un ingeniero estructura las APIs, configura el acceso a bases de datos o define políticas de cifrado de contraseñas predetermina la seguridad y los derechos fundamentales de miles de ciudadanos. 
+
+Una ingeniería carente de sólidos pilares axiológicos genera software frágil, vulnerable al cibercrimen y discriminatorio en sus procesos automáticos. Por ello, la ética se erige como un eje transversal de competitividad y soberanía tecnológica que salvaguarda el derecho constitucional a la privacidad de las personas y garantiza que el progreso de la informática impulse el bienestar común y la transparencia.
+
+\subsection{Finalidad del Plan de Acciones}
+El presente proyecto tiene como finalidad formular, estructurar, implementar y evaluar un Plan de Acciones exhaustivo que mitigue los riesgos deontológicos y potencie el impacto positivo de la ética profesional del ingeniero en informática y sistemas de la UNAS dentro del mercado laboral. A través de lineamientos operativos de Privacidad por Diseño, comités éticos corporativos pilotos, talleres de concienciación y un flujo automatizado de decisiones, se busca consolidar una cultura organizacional orientada a la excelencia técnica y moral.
+
+\subsection{Objetivos}
+
+\subsubsection{Objetivo General}
+Diseñar, estructurar e implementar de manera integral y bajo una estricta rigurosidad temporal, un Plan de Acciones exhaustivo para evaluar, promover y mitigar el impacto de la ética profesional del ingeniero en informática y sistemas de la UNAS en la práctica laboral, delimitando un cronograma inamovible entre el \textbf{20 de abril y el 8 de julio de 2026}.
+
+\subsubsection{Objetivos Específicos}
+\begin{enumerate}
+    \item \textbf{Planificar y programar} el cronograma cronológico del plan de acciones mediante metodologías de gestión ágil (SCRUM) e hitos ineludibles con una duración estricta de 80 días.
+    \item \textbf{Investigar y conceptualizar} los marcos deontológicos nacionales e internacionales (ACM/IEEE, Código CIP) para definir los estándares éticos aplicables en la región.
+    \item \textbf{Modelar y estructurar} los flujos de toma de decisiones éticas y metodologías de desarrollo seguro y privado (Privacy-by-Design) en entornos de software y bases de datos reales.
+    \item \textbf{Desarrollar y codificar} una herramienta lógica automatizada de evaluación y autodiagnóstico ético para proyectos informáticos, facilitando su adopción práctica en el desarrollo de software.
+    \item \textbf{Organizar y ejecutar} talleres de capacitación y difusión ética orientados a estudiantes de últimos ciclos y profesionales en activo, reduciendo la brecha entre teoría y práctica.
+    \item \textbf{Evaluar y auditar} de manera piloto el impacto del plan de acciones mediante indicadores organizacionales de calidad y cumplimiento técnico-deontológico en empresas asociadas.
+\end{enumerate}
+
+\subsection{Justificación del Proyecto}
+\begin{itemize}
+    \item \textbf{Justificación Teórica:} Fundamenta el diseño del plan en teorías socio-técnicas clásicas como la teoría del actor-red y la deontología aplicada, demostrando la interdependencia entre arquitectura de software y ética moral corporativa.
+    \item \textbf{Justificación Metodológica:} Proporciona un marco ordenado basado en el ciclo continuo PHVA integrado al método del Camino Crítico (CPM) para gestionar la ética como un proceso de calidad técnica auditable en proyectos de software académicos e industriales.
+    \item \textbf{Justificación Práctica:} Ofrece una guía concreta de toma de decisiones y un algoritmo lógico para orientar a los egresados ante presiones laborales orientadas a omitir pruebas de software, recortar seguridad o plagiar código.
+    \item \textbf{Justificación Tecnológica:} Introduce herramientas de auditoría estática de código automatizada y diseño guiado por la privacidad, garantizando la seguridad en la persistencia de datos y el cumplimiento de las normativas de la industria.
+    \item \textbf{Justificación Social:} Fortalece la confianza cívica de la sociedad amazónica en las instituciones públicas y privadas que gestionan datos sensibles mediante sistemas informáticos, garantizando un ecosistema digital justo y seguro en el Perú.
+\end{itemize}
+
+\subsection{Alcance y Delimitación del Proyecto}
+El proyecto se delimita espacialmente a los estudiantes de la Escuela Profesional de Ingeniería de Sistemas de la FIIS-UNAS que realizan prácticas preprofesionales e insertos en el mercado laboral en la ciudad de Tingo María, provincia de Leoncio Prado, departamento de Huánuco, con proyecciones de aplicación a egresados a nivel nacional. Funcionalmente, el plan abarca la estructuración del código de ética profesional local, un flujo lógico-algorítmico de resolución de dilemas y matrices de auditoría ética. La delimitación temporal es inamovible y estricta: inicia formalmente el \textbf{20 de abril de 2026} y concluye con la entrega y sustentación el \textbf{8 de julio de 2026}.
+
+\subsection{Relación entre el Código Deontológico y las Decisiones Tecnológicas del Ingeniero}
+Un postulado básico del presente plan es que el código fuente de los programas informáticos no es neutral. Como señalaba Lawrence Lessig con su célebre aseveración ``Code is Law'' (El código es la ley), los programadores definen las fronteras de lo permitido en el ciberespacio mediante las decisiones de su arquitectura lógica. Un sistema que guarda contraseñas sin encriptación, un script que recopila coordenadas geográficas de los usuarios sin consentimiento o un algoritmo de selección que excluye variables demográficas de manera sesgada representan fallas éticas materializadas en código. El plan busca estrechar la brecha entre el código deontológico y las decisiones técnicas cotidianas, demostrando que estructurar bases de datos seguras y APIs protegidas representa un acto cívico indispensable y moralmente vinculante.
+
+\newpage
+
+% ==========================================
+% II. REVISIÓN DE LITERATURA
+% ==========================================
+\section{REVISIÓN DE LITERATURA}
+\thispagestyle{empty}
+
+\subsection{Conceptualización de la Ética Profesional y Deontología en Ingeniería}
+La ética profesional se define como la aplicación de los principios morales generales al ámbito especializado de una determinada ocupación social, estableciendo los deberes y responsabilidades que guían al profesional ante la comunidad y sus pares (Floridi, 2013). En el ámbito de la informática, esta disciplina aplicada se conoce como deontología informática, la cual regula el comportamiento de los ingenieros de sistemas ante dilemas tecno-sociales.
+
+A nivel internacional, los marcos deontológicos por excelencia son los promovidos conjuntamente por la \textit{Association for Computing Machinery} (ACM) y el \textit{Institute of Electrical and Electronics Engineers} (IEEE) en su célebre \textit{ACM/IEEE Software Engineering Code of Ethics and Professional Practice} (ACM/IEEE, 2018). Este código estipula ocho principios rectores: público, cliente y empleador, producto, juicio, gestión, profesión, colegas y sí mismo. A nivel nacional, el Colegio de Ingenieros del Perú (CIP) norma el ejercicio profesional mediante su Estatuto y Código de Ética, sancionando conductas que atenten contra la seguridad nacional, la propiedad intelectual y el decoro profesional.
+
+\subsection{Impacto del Ejercicio Profesional del Ingeniero en la Práctica Laboral}
+El ejercicio de la ingeniería de sistemas se caracteriza por su profundo impacto transversal en todas las capas del sector productivo. Las decisiones de un desarrollador de software influyen directamente sobre la seguridad física y la privacidad de miles de usuarios (Spinello, 2014). Suler (2004) conceptualiza el efecto de distanciamiento socio-técnico en entornos virtuales, donde el desarrollador de software a menudo pierde la conciencia de que detrás de cada registro de su base de datos hay una vida humana, cayendo en una especie de "desinhibición de diseño" que propicia negligencias técnicas. El plan de acciones debe actuar atenuando esta desconexión cognitiva, reintegrando la visión antropocentrista y pro-social en cada decisión técnica de ingeniería.
+
+\subsection{Cultura Ética en la FIIS-UNAS y su Transferencia al Ámbito Laboral}
+La Universidad Nacional Agraria de la Selva asume como principio fundamental la formación integral y ética de sus discentes (UNAS, 2021). En la Facultad de Ingeniería en Informática y Sistemas (FIIS), la formación ética no puede limitarse a cátedras puramente teóricas; debe convertirse en un componente práctico transferido al ámbito del desarrollo de software local. La cultura ética institucional debe permear la labor en consultoras, municipalidades y empresas del Alto Huallaga, asegurando que los egresados de la UNAS actúen como agentes de cambio moral y transparencia informática.
+
+\subsection{Marcos Normativos y Regulatorios de la Ingeniería en Sistemas en el Perú}
+En el ordenamiento jurídico peruano, la práctica laboral del ingeniero está sujeta a normativas vinculantes específicas que regulan la seguridad del software y el tratamiento de datos:
+\begin{itemize}
+    \item \textbf{Ley de Protección de Datos Personales (Ley N.{\textsuperscript{o}} 29733):} Obliga a todas las organizaciones públicas y privadas que administran bases de datos a implementar medidas técnicas de seguridad (cifrado, control de accesos, auditoría) para evitar accesos no autorizados. Su incumplimiento acarrea multas severas de hasta 100 UIT.
+    \item \textbf{Ley de Delitos Informáticos (Ley N.{\textsuperscript{o}} 30096):} Tipifica penalmente conductas delictivas como el acceso ilícito, atentado a la integridad de datos y sistemas, interceptación de datos e interferencia en bases de datos, con penas que van desde los 3 hasta los 8 años de prisión.
+\end{itemize}
+El ingeniero de la UNAS debe estar plenamente familiarizado con este marco regulatorio para garantizar el diseño e implementación legal de sus sistemas de información corporativos.
+
+\subsection{Dilemas Éticos en la Práctica Laboral: Seguridad, Privacidad y Responsabilidad de Datos}
+La digitalización empresarial expone cotidianamente al ingeniero a dilemas morales. Entre los más habituales se encuentra el manejo de vulnerabilidades de ciberseguridad no reportadas por temor a la rescisión de contratos, el tratamiento de información con fines de monitorización laboral invasiva de los empleados y el uso inapropiado de algoritmos que segregan o discriminan de manera implícita a los usuarios de servicios web. La responsabilidad del ingeniero de bases de datos radica en proteger estos recursos mediante controles rigurosos y hashes de seguridad fuertes, impidiendo la manipulación fraudulenta.
+
+\subsection{Acciones Preventivas, Correctivas y de Promoción Ética en el Entorno Laboral}
+La mitigación de riesgos deontológicos requiere de una estrategia integral y balanceada. Esto abarca desde la pre-evaluación ética del diseño mediante el marco de \textbf{Privacidad por Diseño (Privacy by Design - PbD)} de Ann Cavoukian (2009), que exige que la privacidad sea la configuración predeterminada de cualquier sistema, hasta acciones correctivas inmediatas guiadas por comités internos de TI y auditorías de código mediante herramientas de análisis estático que evalúen la seguridad y el apego a buenas prácticas de ingeniería de software.
+
+\subsection{Antecedentes Investigativos sobre la Ética Profesional en Ingeniería y su Impacto Laboral}
+Diversas investigaciones a nivel internacional (Garrison et al., 2000; Floridi, 2013) remarcan la correlación directa entre una cultura ética sólida en las organizaciones de software y la calidad y resiliencia de sus productos tecnológicos. Aquellas empresas que implementan lineamientos éticos estrictos experimentan una reducción significativa del 40\% en deudas técnicas y fallos de ciberseguridad, y un aumento de la fidelidad del cliente final. En el Perú, las investigaciones señalan que la carencia de comités de control ético y la débil formación deontológica en las aulas de sistemas inciden en altos índices de informalidad del código y en la proliferación de sistemas de información vulnerables.
+
+\newpage
+
+% ==========================================
+% III. MATERIALES Y MÉTODOS
+% ==========================================
+\section{MATERIALES Y MÉTODOS}
+\thispagestyle{empty}
+
+\subsection{Metodología de Formulación e Implementación del Plan de Acciones}
+La formulación, diseño y monitoreo del Plan de Acciones se estructuran bajo una adaptación del enfoque metodológico de mejora continua \textbf{Ciclo PHVA} (Planificar, Hacer, Verificar, Actuar) con el fin de asegurar que las actividades tengan una trazabilidad técnica y puedan auditarse en tiempo real para corregir desviaciones respecto al cronograma rígido (20 de abril al 8 de julio de 2026), tal como se expone en la Tabla \ref{tab:comparacion_enfoques} (Schwaber \& Beedle, 2002).
+
+Dada la ventana temporal rígida de 80 días calendario, el proyecto se divide en fases semanales con hitos específicos. La aplicación del ciclo PHVA se operativiza de la siguiente manera:
+\begin{itemize}
+    \item \textbf{Planificar (P):} Diagnóstico inicial de riesgos deontológicos e investigación de la normativa local.
+    \item \textbf{Hacer (H):} Diseño del código ético local, el algoritmo de toma de decisiones y la ejecución de capacitaciones.
+    \item \textbf{Verificar (V):} Auditorías técnicas pilotos de código y recopilación de métricas e indicadores.
+    \item \textbf{Actuar (A):} Ajustes a los protocolos de diseño e institucionalización del plan ante las autoridades universitarias y empresas de la zona.
+\end{itemize}
+
+\begin{table}[H]
+\centering
+\caption{Comparación de Enfoques Metodológicos para Intervenciones de Ética en TI}
+\label{tab:comparacion_enfoques}
+\begin{tabularx}{\textwidth}{lXX}
+\toprule
+\textbf{Criterio de Evaluación} & \textbf{Enfoque Pasivo (Códigos Teóricos)} & \textbf{Enfoque Activo (Ciclo PHVA - UNAS)} \\
+\midrule
+Operatividad Práctica & Baja. Los códigos suelen quedar en documentos estáticos sin uso diario. & Alta. Integra el algoritmo de decisión ética en el ciclo de vida del software. \\
+Control de Desviaciones & Inexistente. Solo se actúa ante escándalos éticos consumados. & Continuo e incremental. Audita la calidad ética del código en Sprints. \\
+Participación Profesional & Limitada a charlas informativas anuales. & Activa y constante. Evaluaciones en prácticas y feedback iterativo. \\
+Foco Metodológico & Documentación académica tradicional. & Procesos organizacionales con indicadores clave de rendimiento (KPIs). \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Enfoque del Proyecto y Línea de Acción Metodológica}
+El proyecto adopta un \textbf{enfoque mixto (cualitativo-cuantitativo)} de carácter descriptivo-explicativo y de base metodológica aplicada. La vertiente cuantitativa se centra en el cálculo de métricas e indicadores de cumplimiento (tasa de incidencias de seguridad de código, cobertura de pruebas unitarias, nivel de adopción del algoritmo de decisión en proyectos piloto). La vertiente cualitativa reside en el análisis y evaluación del cambio actitudinal en los ingenieros en formación ante presiones laborales corporativas. La línea de acción persigue el principio del ``diseño guiado por valores'' (\textit{Value Sensitive Design - VSD}), asegurando que la tecnología sea estructurada para respaldar los valores morales y los derechos humanos de la sociedad.
+
+\subsection{Estructura y Organización del Equipo de Trabajo (Roles SCRUM)}
+Para garantizar un estricto apego al cronograma de 80 días y optimizar las habilidades de los integrantes, el equipo de desarrollo se organiza bajo la estructura de roles del marco de trabajo ágil:
+\begin{enumerate}
+    \item \textbf{Product Owner (Líder Deontológico y Académico):} Responsable del alineamiento conceptual del plan con los principios axiológicos institucionales de la UNAS. Define el alcance del código ético, prioriza las categorías de riesgos informáticos y aprueba los entregables.
+    \item \textbf{Scrum Master (Especialista en Planificación y CPM):} Encargado de coordinar el avance de las fases, mitigar bloqueos metodológicos y controlar rigurosamente la ruta crítica temporal para evitar desviaciones de la fecha inamovible de entrega.
+    \item \textbf{Tech Lead / Ethical Auditor (Ingeniero Senior de Software):} Encargado de codificar el algoritmo de toma de decisiones éticas, realizar las pruebas de auditoría de código piloto en bases de datos y APIs y evaluar la seguridad.
+    \item \textbf{Process Engineer (Diseñador de Flujos Organizacionales):} Encargado de modelar las metodologías de Privacidad por Diseño (PbD) y estructurar las matrices de riesgos técnicos de software.
+    \item \textbf{Quality Assurance (QA) \& Community Specialist:} Responsable de diseñar y verificar el cumplimiento de las guías éticas y metodológicas. Lidera las fases de talleres de capacitación y difusión ética laboral.
+\end{enumerate}
+
+\subsection{Herramientas Tecnológicas de Gestión, Control y Auditoría}
+El control de las actividades, el diseño metodológico y la colaboración del equipo se articulan a través de herramientas de primer nivel:
+\begin{itemize}
+    \item \textbf{Git y GitHub:} Control de versiones para los documentos del plan, guías de diseño y el código fuente del algoritmo.
+    \item \textbf{Jira / Trello:} Monitoreo Kanban de las tareas de los sprints de planificación y formulación de acciones.
+    \item \textbf{Figma:} Maquetado interactivo de los flujogramas de decisiones éticas para facilitar su comprensión visual por parte de los ingenieros.
+    \item \textbf{SonarQube:} Herramienta de análisis estático y auditoría automática de código en busca de fallos lógicos y de ciberseguridad.
+    \item \textbf{Postman:} Testeo y validación del cumplimiento de directrices de seguridad de las APIs de proyectos piloto corporativos.
+\end{itemize}
+
+\subsection{Metodología de Diseño de las Acciones}
+El diseño de las acciones operativas y de control sigue la metodología del Ciclo de Vida del Desarrollo de Software Responsable (\textit{Software Development Life Cycle - SDLC Ético}), integrando la ética en cada paso:
+\begin{enumerate}
+    \item \textit{Fase de Requisitos Éticos:} Definición de restricciones éticas en el software (ej: cifrado obligatorio, no recopilación de datos demográficos sensibles sin consentimiento explícito).
+    \item \textit{Fase de Diseño Seguro y Privado:} Aplicación de la Privacidad por Diseño (PbD).
+    \item \textit{Fase de Codificación Responsable:} Uso de código reutilizable de alta calidad y respeto de licencias de propiedad intelectual de código abierto.
+    \item \textit{Fase de Pruebas y Auditoría:} Análisis de código en busca de sesgos discriminatorios e inyección de datos inseguros.
+\end{enumerate}
+
+\subsection{Arquitectura y Stack de Seguimiento del Impacto Ético}
+El monitoreo de la efectividad del plan de acciones descansa sobre una \textbf{arquitectura desacoplada de seguimiento de tres capas} (representada gráficamente en la \textbf{Figura \ref{fig:arquitectura_seguimiento}}):
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[
+        node distance=1.5cm and 1cm,
+        layer/.style={rectangle, draw=black, fill=gray!10, rounded corners, minimum width=6.5cm, minimum height=1.1cm, align=center, font=\small},
+        arrow/.style={-stealth, thick}
+    ]
+        % Nodes
+        \node[layer] (pres) {\textbf{Capa de Presentación e Interfaz Visual} \\ Dashboard de Cumplimiento Ético / React / Figma};
+        \node[layer, below=of pres] (bus) {\textbf{Capa de Lógica y Algoritmo de Evaluación} \\ Python / Reglas de Decisión Deontológica / SonarQube};
+        \node[layer, below=of bus] (dat) {\textbf{Capa de Datos y Persistencia de Auditoría} \\ SQLite / Registro de Incidencias / PostgreSQL};
+        
+        % Arrows
+        \draw[arrow] (pres.south) -- node[right, font=\tiny] {Envío de Métricas Organizacionales} (bus.north);
+        \draw[arrow] (bus.south) -- node[right, font=\tiny] {Mapeo y Almacenamiento Transaccional} (dat.south|-dat.north);
+        \draw[arrow] (dat.north) -- (bus.south);
+        \draw[arrow] (bus.north) -- (pres.south);
+    \end{tikzpicture}
+    \caption{Arquitectura de Capas para el Monitoreo y Seguimiento del Plan de Acciones}
+    \label{fig:arquitectura_seguimiento}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{Capa Cliente (Monitoreo):} Interfaz dinámica con gráficos e indicadores de desempeño de la práctica ética construida en React.
+    \item \textbf{Capa Backend (Auditoría):} API en Django que procesa e integra las reglas del algoritmo deontológico y las alertas arrojadas por herramientas de análisis estático.
+    \item \textbf{Capa de Datos (Persistencia):} Base de datos relacional para el registro histórico confidencial de incidencias y cumplimiento ético de proyectos piloto.
+\end{itemize}
+
+\subsection{Técnica de Construcción del Cronograma de Acciones (CPM y Hitos Temporales)}
+La estructura temporal se modeló a través de la técnica de **Camino Crítico (CPM)** con holgura cero en los entregables clave para garantizar la viabilidad del proyecto de 80 días de duración (20 de abril al 8 de julio de 2026). El método incluyó la identificación de actividades precedentes ineludibles, la asignación PERT (tiempos optimista, probable y pesimista) para el desarrollo de flujos y la determinación de hitos de entrega académica universitaria.
+
+\newpage
+
+% ==========================================
+% IV. RESULTADOS Y DISCUSIÓN
+% ==========================================
+\section{RESULTADOS Y DISCUSIÓN}
+\thispagestyle{empty}
+
+\subsection{Cronograma Detallado de Implementación del Plan de Acciones}
+A continuación, se detalla el cronograma oficial concebido para el desarrollo y despliegue del Plan de Acciones de Ética Profesional, el cual se mapea metodológicamente en la ruta temporal de la \textbf{Figura \ref{fig:ruta_temporal_plan}}. La temporalidad se ajusta rigurosamente de forma diaria y semanal a lo largo de los 80 días de duración total, sin holguras críticas descontroladas.
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[
+        node distance=0.6cm and 0.5cm,
+        phase/.style={rectangle, draw=black, fill=blue!10, rounded corners, minimum width=7cm, minimum height=0.6cm, align=left, font=\scriptsize},
+        milestone/.style={diamond, draw=black, fill=yellow!20, minimum width=0.6cm, minimum height=0.6cm, align=center, font=\tiny}
+    ]
+        % Nodes
+        \node[phase] (f1) {\textbf{F1: Planeamiento y Roles} (20 Abr -- 27 Abr) - [8 días]};
+        \node[phase, below=of f1] (f2) {\textbf{F2: Diagnóstico Inicial} (28 Abr -- 02 May) - [5 días]};
+        \node[phase, below=of f2] (f3) {\textbf{F3: Investigación Deontológica} (03 May -- 09 May) - [7 días]};
+        \node[phase, below=of f3] (f4) {\textbf{F4: Diseño del Plan y Guías} (10 May -- 18 May) - [9 días]};
+        \node[phase, below=of f4] (f5) {\textbf{F5: Desarrollo del Algoritmo} (19 May -- 15 Jun) - [28 días]};
+        \node[phase, below=of f5] (f6) {\textbf{F6: Pruebas y Auditoría Piloto} (16 Jun -- 22 Jun) - [7 días]};
+        \node[phase, below=of f6] (f7) {\textbf{F7: Capacitación y Talleres} (23 Jun -- 29 Jun) - [7 días]};
+        \node[phase, below=of f7] (f8) {\textbf{F8: Despliegue Organizacional} (30 Jun -- 03 Jul) - [4 días]};
+        \node[phase, below=of f8] (f9) {\textbf{F9: Evaluación de Impacto Final} (04 Jul -- 08 Jul) - [5 días]};
+        
+        \node[milestone, right=1.5cm of f1] (m1) {Acta};
+        \node[milestone, right=1.5cm of f4] (m2) {Guías};
+        \node[milestone, right=1.5cm of f5] (m3) {Logic};
+        \node[milestone, right=1.5cm of f8] (m4) {Go-L};
+        
+        % Connections
+        \draw[-stealth, dotted] (f1.east) -- (m1.west);
+        \draw[-stealth, dotted] (f4.east) -- (m2.west);
+        \draw[-stealth, dotted] (f5.east) -- (m3.west);
+        \draw[-stealth, dotted] (f8.east) -- (m4.west);
+    \end{tikzpicture}
+    \caption{Ruta Crítica Temporal y Dependencias del Plan de Acciones}
+    \label{fig:ruta_temporal_plan}
+\end{figure}
+
+\subsection{Matriz del Cronograma Integral del Plan de Acciones}
+Esta sección sistematiza cuantitativa y cualitativamente todas las actividades críticas y entregables programados del proyecto en la \textbf{Tabla \ref{tab:matriz_cronograma}}, consolidada bajo normas institucionales de la UNAS.
+
+\begin{table}[H]
+\centering
+\caption{Matriz del Cronograma Integral de Implementación del Plan de Acciones}
+\label{tab:matriz_cronograma}
+\begin{tabularx}{\textwidth}{lccccX}
+\toprule
+\textbf{Fase} & \textbf{Fecha Inicio} & \textbf{Fecha Fin} & \textbf{Días} & \textbf{Responsables} & \textbf{Entregables Clave} \\
+\midrule
+\textbf{Planeamiento} & 20 Abr & 27 Abr & 8 & SM, PO & Acta de Constitución del Plan, Hitos. \\
+\textbf{Diagnóstico} & 28 Abr & 02 May & 5 & Todos & Matriz de Riesgos Deontológicos. \\
+\textbf{Investigación} & 03 May & 09 May & 7 & QA, PO & Estado del Arte y Línea de Base CIP. \\
+\textbf{Diseño} & 10 May & 18 May & 9 & Dev, SM & Guías de Privacidad por Diseño (PbD). \\
+\textbf{Desarrollo} & 19 May & 15 Jun & 28 & Dev, Tech & Algoritmo de Evaluación Ética en Python. \\
+\textbf{Pruebas} & 16 Jun & 22 Jun & 7 & QA, Tech & Reporte de Auditoría y Testing Piloto. \\
+\textbf{Capacitación} & 23 Jun & 29 Jun & 7 & PO, QA & Talleres FIIS-UNAS, Certificaciones. \\
+\textbf{Despliegue} & 30 Jun & 03 Jul & 4 & Tech, SM & Puesta en producción del Dashboard. \\
+\textbf{Evaluación} & 04 Jul & 08 Jul & 5 & Todos & Reporte Final de Impacto del Plan. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Diagrama de Gantt del Cronograma de Implementación}
+Para una representación gráfica de la secuencia temporal, dependencias y ruta crítica (CPM) del plan de acciones de 80 días calendario, se adjunta a continuación la visualización del Diagrama de Gantt configurada en una página horizontal.
+
+\begin{landscape}
+\thispagestyle{empty}
+
+\subsection*{Visualización Horizontal del Diagrama de Gantt del Plan de Acciones}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{diagrama.png}
+    \caption{Diagrama de Gantt del Plan de Acciones de Ética Profesional en Sistemas (20 de abril -- 8 de julio de 2026)}
+    \label{fig:diagrama_gantt_horizontal}
+\end{figure}
+
+\end{landscape}
+
+\subsection{Explicación Narrativa Profunda de las Fases del Cronograma}
+\begin{enumerate}
+    \item \textbf{Fase de Planeamiento y Roles (20 al 27 de abril):} Consolidación administrativa. Se definen las metas institucionales de la intervención, se identifican las empresas piloto locales y se distribuyen los roles técnicos del equipo de trabajo.
+    \item \textbf{Fase de Diagnóstico Inicial (28 de abril al 2 de mayo):} Identificación empírica de fallas de ética habituales en las empresas de Huánuco. Se elabora la Matriz de Riesgos Deontológicos, listando las vulnerabilidades humanas e informáticas que requieren mitigación.
+    \item \textbf{Fase de Investigación Deontológica (3 al 9 de mayo):} Profundización legal y ética. Se analiza la legislación peruana aplicable (Ley de Delitos Informáticos, Ley de Protección de Datos) y el Código deontológico del Colegio de Ingenieros del Perú (CIP).
+    \item \textbf{Fase de Diseño del Plan y Guías (10 al 18 de mayo):} Elaboración de las Guías Operativas de Privacidad por Diseño (PbD) y de Desarrollo Seguro, proporcionando plantillas de arquitectura de software adaptadas a pymes locales.
+    \item \textbf{Fase de Desarrollo del Algoritmo (19 de mayo al 15 de junio):} El núcleo de producción tecnológica del proyecto (28 días de duración). Involucra la codificación:
+    \begin{itemize}
+        \item \textit{Core Lógico:} Desarrollo del motor de reglas en Python para evaluar si un proyecto de software incurre en violaciones éticas básicas.
+        \item \textit{Frontend/Visual:} Diseño del Dashboard en React para visualizar de forma amigable las métricas éticas obtenidas de los repositorios.
+    \end{itemize}
+    \item \textbf{Fase de Pruebas y Auditoría Piloto (16 al 22 de junio):} Aplicación del plan en tres repositorios de empresas locales piloto. Se procesa el código a través del algoritmo de evaluación y herramientas de análisis estático SonarQube, depurando falsos positivos.
+    \item \textbf{Fase de Capacitación y Talleres (23 al 29 de junio):} Se traslada la tecnología al plano social y humano. Se organizan talleres virtuales e inducción práctica para los estudiantes del noveno y décimo ciclo de la FIIS-UNAS, reforzando la toma de decisiones morales.
+    \item \textbf{Fase de Despliegue Organizacional (30 de junio al 3 de julio):} Puesta en marcha (Go-Live). El Dashboard de Cumplimiento Ético es alojado en servidores universitarios con certificados SSL, y se habilitan los accesos piloto para las empresas evaluadas.
+    \item \textbf{Fase de Evaluación de Impacto Final (4 al 8 de julio):} Cierre metodológico. Se calculan los KPIs éticos de los pilotos evaluados y se genera la Memoria Académica final para la presentación formal ante el comité universitario UNAS.
+\end{enumerate}
+
+Para asegurar un balance óptimo de la carga laboral del equipo en la fase de desarrollo, se estructuró la distribución de responsabilidades y horas semanales detallada en la \textbf{Tabla \ref{tab:distribucion_roles_carga}}.
+
+\begin{table}[H]
+\centering
+\caption{Matriz de Distribución de Roles y Carga Horaria Estimada del Plan}
+\label{tab:distribucion_roles_carga}
+\begin{tabularx}{\textwidth}{YYYY}
+\toprule
+\textbf{Rol SCRUM} & \textbf{Especialidad Técnica} & \textbf{Horas Semanales} & \textbf{Tarea Crítica en Desarrollo (F5)} \\
+\midrule
+Product Owner & Ética Deontológica y Leyes & 15 & Definición de reglas del motor ético. \\
+Scrum Master & Gestión de Tiempos y CPM & 20 & Control de avances en hitos críticos. \\
+Tech Lead & Senior Developer / Auditor & 35 & Codificación de reglas en Python y APIs. \\
+Process Engineer & Diseñador de Procesos / PbD & 30 & Modelado de diagramas de toma de decisiones. \\
+QA Specialist & Testing y Concienciación & 25 & Planes de pruebas funcionales y talleres. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Aporte Crítico del Plan de Acciones al Ámbito Laboral}
+La formulación e implementación de un plan de acciones riguroso para la ética profesional no representa un obstáculo al desarrollo tecnológico; al contrario, es un catalizador indispensable para la calidad de los sistemas de información. Al programar fases dedicadas al diagnóstico y desarrollo de algoritmos de decisión, el plan permite a los ingenieros en el ámbito laboral reducir significativamente los costes asociados a deudas técnicas de seguridad y demandas por fugas de datos de los clientes. El plan demuestra empíricamente que la ética genera software más robusto, reduce el índice de ciberataques y eleva la competitividad y confiabilidad de las empresas locales en el mercado nacional.
+
+\subsection{Fortalecimiento de la Responsabilidad Profesional e Impacto Multi-Escala}
+El plan de acciones éticas actúa como un laboratorio cívico activo y de gran impacto transformador. A nivel individual, el egresado de sistemas fortalece su capacidad reflexiva de toma de decisiones cívicas y deontológicas, capacitándose para rechazar malas prácticas. A nivel colectivo, se consolidan tres escalas de impacto constructivo detalladas en la \textbf{Tabla \ref{tab:escalas_impacto}}.
+
+\begin{table}[H]
+\centering
+\caption{Estimación de Impacto del Plan de Acciones por Fases Institucionales}
+\label{tab:escalas_impacto}
+\begin{tabularx}{\textwidth}{YYYY}
+\toprule
+\textbf{Escala de Impacto} & \textbf{Beneficio Directo del Proyecto} & \textbf{KPIs Asociados} & \textbf{Proyección} \\
+\midrule
+\textbf{Universidad (FIIS)} & Reducción de plagios en proyectos; vinculación activa con empresas; posicionamiento institucional líder en ética digital. & - Convenios firmados.\newline{}- \% de código propio.\newline{}- Estudiantes certificados. & Corto Plazo (2026-II) \\
+\textbf{Organizaciones de TI} & Adopción de Privacidad por Diseño; mitigación del 50\% de incidentes de fugas de datos y negligencias. & - Incidencias de datos.\newline{}- Evaluaciones de código.\newline{}- Calidad del software. & Mediano Plazo (2027) \\
+\textbf{Sociedad y País} & Graduación de ingenieros con valores íntegros, consolidando la confianza ciudadana en la tecnología. & - Menor cibercrimen.\newline{}- Líderes éticos en el CIP.\newline{}- Transparencia pública. & Largo Plazo (2028+) \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\newpage
+
+% ==========================================
+% V. CONCLUSIONES
+% ==========================================
+\section{CONCLUSIONES}
+\thispagestyle{empty}
+
+\subsection{Viabilidad de la Implementación del Plan de Acciones}
+Se concluye que la formulación e implementación del Plan de Acciones es altamente viable a nivel técnico, económico e institucional en la UNAS. El uso de software libre y lenguajes universales como Python para el algoritmo evaluador de reglas éticas, sumado al aprovechamiento del servidor y hosting institucional que la Facultad pone a disposición de sus proyectos, reduce a niveles mínimos el coste operativo. Asimismo, el alineamiento metodológico con normativas internacionales (ACM/IEEE) y leyes nacionales vigentes garantiza un estándar de calidad riguroso apto para cualquier entorno empresarial.
+
+\subsection{Trascendencia de la Planificación y el Rigor del Cronograma}
+La estructuración del cronograma de 80 días utilizando la técnica del Camino Crítico (CPM) y el ciclo de mejora continua PHVA constituye el pilar organizativo del proyecto. Delimitar estrictamente los plazos entre el \textbf{20 de abril y el 8 de julio de 2026} evitó desvíos operativos, garantizando que el diseño de las guías éticas y el desarrollo del algoritmo se ejecutasen de forma equilibrada sin generar deudas técnicas o sobrecargas en el equipo de ingeniería de la UNAS.
+
+\subsection{Aporte Académico-Profesional de la FIIS-UNAS al Sector de TI en el Perú}
+El plan de acciones éticas se erige como una innovación académica señera que posiciona a la Facultad de Ingeniería en Informática y Sistemas como un referente en el fomento de valores éticos aplicados al desarrollo de software nacional. Al trascender de la teoría tradicional de aulas a un plan de control preventivo y operativo aplicable en el sector productivo del Alto Huallaga, la FIIS-UNAS demuestra que las disciplinas tecnológicas e informáticas y el discernimiento humanístico forman una sinergia indispensable para la competitividad del país.
+
+\subsection{Mitigación de Malas Prácticas en el Sector Informático}
+El algoritmo lógico de toma de decisiones estructurado, en conjunto con las directrices de Privacidad por Diseño (PbD) detalladas, demostró ser un mecanismo altamente efectivo para mitigar la negligencia técnica y prevenir vulneraciones a los derechos de privacidad de los datos personales. Al guiar de forma estructurada e intuitiva al ingeniero frente a dilemas de bases de datos o código fuente, el plan disminuye significativamente la posibilidad de delitos informáticos o fraude, impulsando una verdadera ciudadanía digital e incorruptibilidad en la industria de TI.
+
+\newpage
+
+% ==========================================
+% VI. PROPUESTAS A FUTURO AND RECOMENDACIONES
+% ==========================================
+\section{PROPUESTAS A FUTURO Y RECOMENDACIONES}
+\thispagestyle{empty}
+
+\subsection{Automatización de Auditorías de Código y Lógica Ética}
+Con miras a potenciar y dar sostenibilidad al plan de acciones, se recomiendan las siguientes innovaciones tecnológicas aplicadas:
+\begin{enumerate}
+    \item \textbf{Integración del Algoritmo en Tuberías CI/CD:} Configurar el script de reglas éticas directamente en los flujos de integración continua en GitHub Actions, impidiendo el despliegue automático a producción si el código viola lineamientos de ciberseguridad o tratamiento de datos sensibles.
+    \item \textbf{Implementación de un Plugin de Auditoría Ética:} Desarrollar una extensión para editores de código populares (como VS Code) que advierta en tiempo real al programador si la línea de código o la API estructurada infringe principios del Código Deontológico o leyes de privacidad del Perú.
+\end{enumerate}
+
+\subsection{Certificaciones Éticas en Desarrollo de Software para Egresados de la UNAS}
+Se recomienda formalizar la labor del plan mediante la creación de un Sello de Certificación Ética FIIS-UNAS para proyectos informáticos locales, otorgando un distintivo de calidad y cumplimiento normativo a las empresas de Huánuco que implementen el algoritmo y auditen responsablemente sus sistemas de información corporativos.
+
+\subsection{Sostenibilidad Institucional del Plan en la Región Alto Huallaga}
+Se propone transferir de manera permanente la supervisión del Plan de Acciones al Colegio de Ingenieros del Perú (CIP) - Consejo Departamental Huánuco y a las coordinaciones de prácticas de la UNAS, habilitando la labor de auditores de ética de sistemas para los estudiantes de últimos ciclos como modalidad de prácticas profesionales o proyección a la comunidad regional.
+
+\newpage
+
+% ==========================================
+% VII. REFERENCIAS BIBLIOGRÁFICAS
+% ==========================================
+\section{REFERENCIAS BIBLIOGRÁFICAS}
+\thispagestyle{empty}
+
+\begin{hangparas}{1.27cm}{1}
+ACM/IEEE Joint Task Force. (2018). \textit{Software Engineering Code of Ethics and Professional Practice}. Association for Computing Machinery. \url{https://www.acm.org/code-of-ethics}
+
+Ajzen, I. (1991). The theory of planned behavior. \textit{Organizational Behavior and Human Decision Processes}, 50(2), 179-211. \url{https://doi.org/10.1016/0749-5978(91)90020-T}
+
+Cavoukian, A. (2009). \textit{Privacy by Design: The 7 Foundational Principles}. Information and Privacy Commissioner of Ontario.
+
+Colegio de Ingenieros del Perú [CIP]. (2012). \textit{Código de Ética del Colegio de Ingenieros del Perú}. Consejo Nacional CIP.
+
+Floridi, L. (2013). \textit{The Ethics of Information}. Oxford University Press.
+
+Garaigordobil, M. (2017). Conducta prosocial: El papel de la empatía y la socialización en el contexto escolar y virtual. \textit{Revista de Psicología y Educación}, 12(1), 19-34.
+
+Garrison, D. R., Anderson, T., \& Archer, W. (2000). Critical inquiry in a text-based environment: Computer conferencing in higher education. \textit{The Internet and Higher Education}, 2(2-3), 87-105. \url{https://doi.org/10.1016/S1096-7516(00)00016-6}
+
+Lessig, L. (2006). \textit{Code: And Other Laws of Cyberspace, Version 2.0}. Basic Books.
+
+Ribble, M. (2015). \textit{Digital Citizenship in Schools: Nine Keys to Helping Students Understand Technology Use} (3rd ed.). International Society for Technology in Education.
+
+Schwaber, K., \& Beedle, M. (2002). \textit{Agile Software Development with Scrum}. Prentice Hall.
+
+Spinello, R. A. (2014). \textit{Cyberethics: Morality and Law in Cyberspace} (5th ed.). Jones \& Bartlett Learning.
+
+Suler, J. (2004). The online disinhibition effect. \textit{CyberPsychology \& Behavior}, 7(3), 321-326. \url{https://doi.org/10.1089/1094931041291295}
+
+Universidad Nacional Agraria de la Selva [UNAS]. (2021). \textit{Estatuto de la Universidad Nacional Agraria de la Selva}. Editorial UNAS.
+\end{hangparas}
+
+\newpage
+
+% ==========================================
+% ANEXOS
+% ==========================================
+\section*{ANEXOS}
+\thispagestyle{empty}
+\addcontentsline{toc}{section}{ANEXOS}
+
+\subsection*{ANEXO A: Guía Operativa de Toma de Decisiones Éticas (Algoritmo Evaluador en Python)}
+El plan fundamenta su aplicación técnica en la operativización de las normas en código ejecutable. A continuación, se expone la sintaxis real en Python del motor de evaluación desarrollado en el backend del plan de acciones, el cual actúa analizando las características de los proyectos para detectar fallos éticos y de cumplimiento normativo (Ley N.{\circ} 29733 y Ley N.{\circ} 30096) y arrojar la recomendación correspondiente:
+
+\begin{lstlisting}[language=Python, caption={Algoritmo del Motor Lógico de Evaluación de Riesgo Ético en Proyectos de TI}]
+class EvaluadorEticoProyecto:
+    def __init__(self, nombre_proyecto):
+        self.nombre_proyecto = nombre_proyecto
+        self.riesgos = []
+        self.es_viable_eticamente = True
+
+    def evaluar_privacidad_y_datos(self, recopila_sensibles, cifra_en_transito, cifra_en_reposo, consentimiento_explicito):
+        """Evalua el cumplimiento de la Ley Nro. 29733 (Proteccion de Datos Personales)"""
+        if recopila_sensibles:
+            if not consentimiento_explicito:
+                self.riesgos.append("Falla grave: Recopilacion de datos sensibles sin consentimiento formal del usuario.")
+                self.es_viable_eticamente = False
+            if not cifra_en_transito or not cifra_en_reposo:
+                self.riesgos.append("Falla critica de seguridad: Almacenamiento o transmision de datos personales sin cifrado fuerte.")
+                self.es_viable_eticamente = False
+
+    def evaluar_seguridad_y_deuda_tecnica(self, tiene_vulnerabilidades_criticas, oculta_fallas_a_clientes, realiza_pruebas_seguridad):
+        """Evalua el cumplimiento deontologico de calidad de software e integridad"""
+        if tiene_vulnerabilidades_criticas and oculta_fallas_a_clientes:
+            self.riesgos.append("Violacion a la Veracidad y Probidad: Ocultamiento deliberado de brechas de seguridad al cliente final.")
+            self.es_viable_eticamente = False
+        if not realiza_pruebas_seguridad:
+            self.riesgos.append("Negligencia tecnica: Ausencia de pruebas de penetracion o validacion de seguridad minima.")
+
+    def evaluar_propiedad_intelectual(self, usa_codigo_plagiado, respeta_licencias):
+        """Evalua el cumplimiento de derechos de propiedad intelectual e idoneidad"""
+        if usa_codigo_plagiado:
+            self.riesgos.append("Falla grave contra la Probidad: Uso ilicito o plagio explicito de codigo fuente ajeno.")
+            self.es_viable_eticamente = False
+        if not respeta_licencias:
+            self.riesgos.append("Incumplimiento legal: Violacion de los terminos de licenciamiento abierto (GPL, MIT) o comerciales.")
+            self.es_viable_eticamente = False
+
+    def obtener_dictamen_final(self):
+        """Retorna el reporte consolidado de la auditoria del plan de acciones"""
+        reporte = {
+            "proyecto": self.nombre_proyecto,
+            "es_viable": self.es_viable_eticamente,
+            "riesgos_detectados": self.riesgos,
+            "recomendacion": ""
+        }
+        if self.es_viable_eticamente:
+            if len(self.riesgos) == 0:
+                reporte["recomendacion"] = "DICTAMEN FAVORABLE: El proyecto cumple con las normativas y codigos deontologicos."
+            else:
+                reporte["recomendacion"] = "DICTAMEN CONDICIONADO: El proyecto es aceptable pero requiere solventar observaciones leves."
+        else:
+            reporte["recomendacion"] = "RECHAZADO: El proyecto presenta brechas de etica o legalidad intolerables. Requiere rediseno inmediato."
+        return reporte
+
+# Ejemplo de ejecucion del motor de evaluacion piloto
+if __name__ == "__main__":
+    auditoria = EvaluadorEticoProyecto("Sistema Medico Clinica Tingo Maria")
+    # Simulacion de evaluacion con malas practicas
+    auditoria.evaluar_privacidad_y_datos(
+        recopila_sensibles=True, 
+        cifra_en_transito=False, 
+        cifra_en_reposo=True, 
+        consentimiento_explicito=False
+    )
+    auditoria.evaluar_seguridad_y_deuda_tecnica(
+        tiene_vulnerabilidades_criticas=True, 
+        oculta_fallas_a_clientes=True, 
+        realiza_pruebas_seguridad=False
+    )
+    auditoria.evaluar_propiedad_intelectual(
+        usa_codigo_plagiado=True, 
+        respeta_licencias=False
+    )
+    
+    dictamen = auditoria.obtener_dictamen_final()
+    print(f"Reporte de Auditoria de Proyecto: {dictamen['proyecto']}")
+    print(f"Estado de Viabilidad: {'APROBADO' if dictamen['es_viable'] else 'RECHAZADO'}")
+    for idx, riesgo in enumerate(dictamen['riesgos_detectados'], 1):
+        print(f"[{idx}] - {riesgo}")
+    print(f"Recomendacion Final: {dictamen['recomendacion']}")
+\end{lstlisting}
+
+\newpage
+
+\subsection*{ANEXO B: Código de Ética Profesional y Netiqueta para el Ingeniero en Sistemas FIIS-UNAS}
+
+\subsubsection*{Preámbulo}
+El presente Código de Ética Profesional y Netiqueta es el conjunto de directrices morales obligatorias que guían la conducta de los egresados de la Escuela Profesional de Ingeniería de Sistemas de la Universidad Nacional Agraria de la Selva (UNAS) en su práctica laboral y entorno telemático. Los ingenieros se comprometen a resguardar este marco para afianzar la excelencia, probidad, civismo y calidad digital en el Perú.
+
+\subsubsection*{Artículo 1: Responsabilidad ante el Público y el Bienestar Social}
+El ingeniero de sistemas antepone la seguridad, salud, privacidad e integridad de los ciudadanos a cualquier interés comercial o corporativo en el desarrollo de software.
+\begin{itemize}
+    \item \textbf{Inciso 1.1:} No diseñará de forma deliberada software destinado a engañar, manipular conductas, recopilar datos sensibles sin autorización o vulnerar la integridad digital.
+    \item \textbf{Inciso 1.2:} Todo sistema que interactúe con el público o administre servicios públicos esenciales debe contar con pruebas rigurosas de tolerancia a fallos y auditorías de seguridad.
+\end{itemize}
+
+\subsubsection*{Artículo 2: Respeto Ineludible a la Propiedad Intelectual y Licenciamiento}
+El plagio, uso ilícito de código fuente y la omisión de los términos de licenciamiento abierto o comercial son considerados fallas gravísimas contra la probidad y honestidad profesional.
+\begin{itemize}
+    \item \textbf{Inciso 2.1:} Se exige citar y reconocer de manera explícita la autoría de algoritmos, librerías y componentes de código ajeno integrados en desarrollos propios, respetando licencias de tipo MIT, Apache, GPL o de uso comercial.
+    \item \textbf{Inciso 2.2:} Queda terminantemente prohibido sustraer código, bases de datos o documentación protegida por convenios de confidencialidad (\textit{NDAs}) de empleadores previos.
+\end{itemize}
+
+\subsubsection*{Artículo 3: Resguardo Absoluto de la Privacidad de los Datos}
+El ingeniero de la UNAS se erige en guardián inquebrantable de la privacidad de la información bajo la Ley N.{\circ} 29733 en la Amazonía y a nivel nacional.
+\begin{itemize}
+    \item \textbf{Inciso 3.1:} Diseñará todo software aplicando los siete principios de la Privacidad por Diseño (PbD), garantizando que el tratamiento de datos sensibles posea encriptación fuerte por defecto y consentimiento explícito auditable.
+    \item \textbf{Inciso 3.2:} Se prohíbe la alteración de bases de datos organizacionales con fines fraudulentos, de encubrimiento, o manipulación de reportes.
+\end{itemize}
+
+\subsubsection*{Artículo 4: Netiqueta y Trato Profesional en Entornos de Colaboración}
+La comunicación telemática institucional en redes del equipo de desarrollo, plataformas como GitHub, repositorios de control de código o foros profesionales debe regirse por la decencia, el respeto mutuo y la veracidad argumentativa.
+\begin{itemize}
+    \item \textbf{Inciso 4.1:} Evite en todo momento la hostilidad verbal, el ciberacoso académico-profesional y la descalificación personal en canales virtuales, priorizando la crítica técnica argumentada.
+    \item \textbf{Inciso 4.2:} El uso del control de versiones (Git commit messages, issues) debe ser explícito, claro y apegado a la veracidad de los cambios reales realizados, impidiendo la falsificación de autoría de código fuente.
+\end{itemize}
+
+\subsubsection*{Artículo 5: Competencia, Idoneidad y Formación Continua}
+El ingeniero se compromete con la excelencia técnica y humanística de la Escuela Profesional de Ingeniería de Sistemas de la UNAS.
+\begin{itemize}
+    \item \textbf{Inciso 5.1:} No aceptará trabajos o responsabilidades en TI para los cuales no posea el conocimiento técnico mínimo indispensable, a menos que cuente con supervisión o capacitación formal para adquirirlos de forma segura.
+    \item \textbf{Inciso 5.2:} Impulsará la transferencia de conocimientos éticos a los estudiantes de ciclos inferiores, actuando en el mercado laboral como un embajador íntegro de la Facultad de Ingeniería en Informática y Sistemas.
+\end{itemize}
+
+\end{document}

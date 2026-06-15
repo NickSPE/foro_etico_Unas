@@ -1,0 +1,50 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {section}{\numberline {I}INTRODUCCIÓN}{1}{section.1}%
+\contentsline {subsection}{\numberline {1.1.}Alineamiento Estratégico Institucional: Misión, Visión y Principios de la UNAS}{1}{subsection.2}%
+\contentsline {subsubsection}{\numberline {1.1.1.}Alineamiento con la Visión de la UNAS}{1}{subsubsection.3}%
+\contentsline {subsubsection}{\numberline {1.1.2.}Alineamiento con la Misión de la UNAS}{1}{subsubsection.4}%
+\contentsline {subsubsection}{\numberline {1.1.3.}Operativización de los Principios Institucionales de la UNAS en la Práctica Laboral}{2}{subsubsection.5}%
+\contentsline {subsection}{\numberline {1.2.}Problemática Ética y la Práctica Laboral del Ingeniero en Informática y Sistemas}{3}{subsection.14}%
+\contentsline {subsection}{\numberline {1.3.}Necesidad de un Plan de Acción Ético en la Práctica Laboral}{3}{subsection.15}%
+\contentsline {subsection}{\numberline {1.4.}Importancia de la Ética Profesional y su Impacto en el Ejercicio de la Ingeniería}{4}{subsection.16}%
+\contentsline {subsection}{\numberline {1.5.}Finalidad del Plan de Acciones}{4}{subsection.17}%
+\contentsline {subsection}{\numberline {1.6.}Objetivos}{4}{subsection.18}%
+\contentsline {subsubsection}{\numberline {1.6.1.}Objetivo General}{4}{subsubsection.19}%
+\contentsline {subsubsection}{\numberline {1.6.2.}Objetivos Específicos}{5}{subsubsection.20}%
+\contentsline {subsection}{\numberline {1.7.}Justificación del Proyecto}{5}{subsection.27}%
+\contentsline {subsection}{\numberline {1.8.}Alcance y Delimitación del Proyecto}{6}{subsection.28}%
+\contentsline {subsection}{\numberline {1.9.}Relación entre el Código Deontológico y las Decisiones Tecnológicas del Ingeniero}{6}{subsection.29}%
+\contentsline {section}{\numberline {II}REVISIÓN DE LITERATURA}{7}{section.30}%
+\contentsline {subsection}{\numberline {2.1.}Conceptualización de la Ética Profesional y Deontología en Ingeniería}{7}{subsection.31}%
+\contentsline {subsection}{\numberline {2.2.}Impacto del Ejercicio Profesional del Ingeniero en la Práctica Laboral}{7}{subsection.32}%
+\contentsline {subsection}{\numberline {2.3.}Cultura Ética en la FIIS-UNAS y su Transferencia al Ámbito Laboral}{7}{subsection.33}%
+\contentsline {subsection}{\numberline {2.4.}Marcos Normativos y Regulatorios de la Ingeniería en Sistemas en el Perú}{8}{subsection.34}%
+\contentsline {subsection}{\numberline {2.5.}Dilemas Éticos en la Práctica Laboral: Seguridad, Privacidad y Responsabilidad de Datos}{8}{subsection.35}%
+\contentsline {subsection}{\numberline {2.6.}Acciones Preventivas, Correctivas y de Promoción Ética en el Entorno Laboral}{8}{subsection.36}%
+\contentsline {subsection}{\numberline {2.7.}Antecedentes Investigativos sobre la Ética Profesional en Ingeniería y su Impacto Laboral}{9}{subsection.37}%
+\contentsline {section}{\numberline {III}MATERIALES Y MÉTODOS}{10}{section.38}%
+\contentsline {subsection}{\numberline {3.1.}Metodología de Formulación e Implementación del Plan de Acciones}{10}{subsection.39}%
+\contentsline {subsection}{\numberline {3.2.}Enfoque del Proyecto y Línea de Acción Metodológica}{11}{subsection.41}%
+\contentsline {subsection}{\numberline {3.3.}Estructura y Organización del Equipo de Trabajo (Roles SCRUM)}{11}{subsection.42}%
+\contentsline {subsection}{\numberline {3.4.}Herramientas Tecnológicas de Gestión, Control y Auditoría}{12}{subsection.48}%
+\contentsline {subsection}{\numberline {3.5.}Metodología de Diseño de las Acciones}{13}{subsection.49}%
+\contentsline {subsection}{\numberline {3.6.}Arquitectura y Stack de Seguimiento del Impacto Ético}{13}{subsection.54}%
+\contentsline {subsection}{\numberline {3.7.}Técnica de Construcción del Cronograma de Acciones (CPM y Hitos Temporales)}{14}{subsection.56}%
+\contentsline {section}{\numberline {IV}RESULTADOS Y DISCUSIÓN}{15}{section.57}%
+\contentsline {subsection}{\numberline {4.1.}Cronograma Detallado de Implementación del Plan de Acciones}{15}{subsection.58}%
+\contentsline {subsection}{\numberline {4.2.}Matriz del Cronograma Integral del Plan de Acciones}{15}{subsection.60}%
+\contentsline {subsection}{\numberline {4.3.}Diagrama de Gantt del Cronograma de Implementación}{16}{subsection.62}%
+\contentsline {subsection}{\numberline {4.4.}Explicación Narrativa Profunda de las Fases del Cronograma}{19}{subsection.64}%
+\contentsline {subsection}{\numberline {4.5.}Aporte Crítico del Plan de Acciones al Ámbito Laboral}{20}{subsection.75}%
+\contentsline {subsection}{\numberline {4.6.}Fortalecimiento de la Responsabilidad Profesional e Impacto Multi-Escala}{21}{subsection.76}%
+\contentsline {section}{\numberline {V}CONCLUSIONES}{22}{section.78}%
+\contentsline {subsection}{\numberline {5.1.}Viabilidad de la Implementación del Plan de Acciones}{22}{subsection.79}%
+\contentsline {subsection}{\numberline {5.2.}Trascendencia de la Planificación y el Rigor del Cronograma}{22}{subsection.80}%
+\contentsline {subsection}{\numberline {5.3.}Aporte Académico-Profesional de la FIIS-UNAS al Sector de TI en el Perú}{22}{subsection.81}%
+\contentsline {subsection}{\numberline {5.4.}Mitigación de Malas Prácticas en el Sector Informático}{22}{subsection.82}%
+\contentsline {section}{\numberline {VI}PROPUESTAS A FUTURO Y RECOMENDACIONES}{24}{section.83}%
+\contentsline {subsection}{\numberline {6.1.}Automatización de Auditorías de Código y Lógica Ética}{24}{subsection.84}%
+\contentsline {subsection}{\numberline {6.2.}Certificaciones Éticas en Desarrollo de Software para Egresados de la UNAS}{24}{subsection.87}%
+\contentsline {subsection}{\numberline {6.3.}Sostenibilidad Institucional del Plan en la Región Alto Huallaga}{24}{subsection.88}%
+\contentsline {section}{\numberline {VII}REFERENCIAS BIBLIOGRÁFICAS}{25}{section.89}%
+\contentsline {section}{ANEXOS}{26}{section.89}%
