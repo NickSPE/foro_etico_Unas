@@ -4,7 +4,7 @@ import { supabase } from '../supabaseClient';
 import { useAuth } from '../context/AuthContext';
 import { 
   Home, TrendingUp, MessageSquare, Bell, CircleUser, PlusSquare, 
-  EyeOff, Brain, Shield, Globe, Copyright, Info, List, ShieldAlert
+  EyeOff, Brain, Shield, Globe, Copyright, Info, List, ShieldAlert, Leaf
 } from 'lucide-react';
 
 const iconMap = {
@@ -12,7 +12,8 @@ const iconMap = {
   Brain: Brain,
   Shield: Shield,
   Globe: Globe,
-  Copyright: Copyright
+  Copyright: Copyright,
+  Leaf: Leaf
 };
 
 const LeftSidebar = () => {

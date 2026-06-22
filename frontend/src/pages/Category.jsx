@@ -4,14 +4,15 @@ import { supabase } from '../supabaseClient';
 import { useAuth } from '../context/AuthContext';
 import PostCard from '../components/PostCard';
 import Sidebar from '../components/Sidebar';
-import { EyeOff, Brain, Shield, Globe, Copyright, Info, Sparkles, TrendingUp, Calendar } from 'lucide-react';
+import { EyeOff, Brain, Shield, Globe, Copyright, Info, Sparkles, TrendingUp, Calendar, Leaf } from 'lucide-react';
 
 const iconMap = {
   EyeOff: EyeOff,
   Brain: Brain,
   Shield: Shield,
   Globe: Globe,
-  Copyright: Copyright
+  Copyright: Copyright,
+  Leaf: Leaf
 };
 
 const CategoryPage = () => {

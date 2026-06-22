@@ -102,6 +102,26 @@ function evaluarEstatico(respuestas) {
       sugerencia_mitigacion: 'Optimizar consultas a base de datos e implementar caché eficiente.'
     });
   }
+  if (!respuestas.usa_nube_sostenible) {
+    score -= 10;
+    riesgos.push({
+      titulo: 'Infraestructura de Nube sin Certificación Ecológica',
+      descripcion: 'El hosting o proveedor de base de datos seleccionado no cuenta con políticas de carbono neutral ni uso de energías limpias.',
+      gravedad: 'media',
+      principio_ley_afectada: 'Dimensión Ambiental de la Sostenibilidad (Sesión 10)',
+      sugerencia_mitigacion: 'Seleccionar o migrar a proveedores de nube (como AWS, GCP, Azure) con centros de datos alimentados por energía 100% renovable.'
+    });
+  }
+  if (respuestas.obsolescencia_programada) {
+    score -= 15;
+    riesgos.push({
+      titulo: 'Generación de Desechos Electrónicos (E-Waste) por Incompatibilidad',
+      descripcion: 'El software requiere hardware de última generación o sistemas muy recientes, forzando la desactualización y desecho de dispositivos antiguos.',
+      gravedad: 'media',
+      principio_ley_afectada: 'Gestión de Residuos Electrónicos (Sesión 10)',
+      sugerencia_mitigacion: 'Optimizar el frontend mediante progressive enhancement, reducir el peso de los archivos estáticos y asegurar compatibilidad con navegadores antiguos.'
+    });
+  }
 
   score = Math.max(0, Math.min(100, score));
   return { score, riesgos };
@@ -213,6 +233,8 @@ const Auditoria = () => {
     informa_metricas_reales: true,
     evita_patrones_oscuros: true,
     optimiza_recursos: true,
+    usa_nube_sostenible: true,
+    obsolescencia_programada: false,
   });
 
   const fetchHistory = async () => {
@@ -330,7 +352,7 @@ const Auditoria = () => {
       maneja_datos_personales: false, cifra_datos: false, usa_codigo_plagiado: false,
       respeta_licencias: true, tiene_vulnerabilidades: false, realiza_auditorias: true,
       toma_decisiones_automatizadas: false, mitiga_sesgos: false, informa_metricas_reales: true,
-      evita_patrones_oscuros: true, optimiza_recursos: true,
+      evita_patrones_oscuros: true, optimiza_recursos: true, usa_nube_sostenible: true, obsolescencia_programada: false
     });
     setSelectedAudit(null);
     setStep(1);
@@ -565,6 +587,30 @@ const Auditoria = () => {
               <div className="flex gap-2 shrink-0">
                 <button type="button" onClick={() => setRespuestas(prev => ({ ...prev, optimiza_recursos: true }))} className={`px-4 py-1.5 rounded-lg text-xs font-black transition-all ${respuestas.optimiza_recursos ? 'bg-emerald-600 text-white shadow-sm' : 'bg-white border border-brand-border text-brand-dark hover:bg-slate-50'}`}>Sí</button>
                 <button type="button" onClick={() => handleInputChange('optimiza_recursos')} className={`px-4 py-1.5 rounded-lg text-xs font-black transition-all ${!respuestas.optimiza_recursos ? 'bg-rose-600 text-white shadow-sm' : 'bg-white border border-brand-border text-brand-dark hover:bg-slate-50'}`}>No</button>
+              </div>
+            </div>
+
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-brand-bg p-4 rounded-lg border border-brand-border">
+              <div className="flex-1">
+                <span className="text-[9px] font-black tracking-widest text-emerald-600 uppercase">Green IT & Sostenibilidad</span>
+                <h4 className="text-xs font-black text-brand-dark mt-0.5">¿El hosting o proveedor de base de datos utiliza energía renovable?</h4>
+                <p className="text-[10px] text-brand-lightText mt-1">Centros de datos certificados carbono neutrales o alimentados por energía renovable (Sesión 10).</p>
+              </div>
+              <div className="flex gap-2 shrink-0">
+                <button type="button" onClick={() => setRespuestas(prev => ({ ...prev, usa_nube_sostenible: true }))} className={`px-4 py-1.5 rounded-lg text-xs font-black transition-all ${respuestas.usa_nube_sostenible ? 'bg-emerald-600 text-white shadow-sm' : 'bg-white border border-brand-border text-brand-dark hover:bg-slate-50'}`}>Sí</button>
+                <button type="button" onClick={() => setRespuestas(prev => ({ ...prev, usa_nube_sostenible: false }))} className={`px-4 py-1.5 rounded-lg text-xs font-black transition-all ${!respuestas.usa_nube_sostenible ? 'bg-rose-600 text-white shadow-sm' : 'bg-white border border-brand-border text-brand-dark hover:bg-slate-50'}`}>No</button>
+              </div>
+            </div>
+
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-brand-bg p-4 rounded-lg border border-brand-border">
+              <div className="flex-1">
+                <span className="text-[9px] font-black tracking-widest text-teal-600 uppercase">Hardware Sostenible y E-Waste</span>
+                <h4 className="text-xs font-black text-brand-dark mt-0.5">¿El software acelera la obsolescencia del hardware del usuario?</h4>
+                <p className="text-[10px] text-brand-lightText mt-1">El sistema requiere alta capacidad gráfica, CPU de última generación o restringe el acceso a equipos antiguos.</p>
+              </div>
+              <div className="flex gap-2 shrink-0">
+                <button type="button" onClick={() => setRespuestas(prev => ({ ...prev, obsolescencia_programada: true }))} className={`px-4 py-1.5 rounded-lg text-xs font-black transition-all ${respuestas.obsolescencia_programada ? 'bg-rose-600 text-white shadow-sm' : 'bg-white border border-brand-border text-brand-dark hover:bg-slate-50'}`}>Sí</button>
+                <button type="button" onClick={() => setRespuestas(prev => ({ ...prev, obsolescencia_programada: false }))} className={`px-4 py-1.5 rounded-lg text-xs font-black transition-all ${!respuestas.obsolescencia_programada ? 'bg-emerald-600 text-white shadow-sm' : 'bg-white border border-brand-border text-brand-dark hover:bg-slate-50'}`}>No</button>
               </div>
             </div>
 
