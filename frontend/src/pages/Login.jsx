@@ -22,6 +22,7 @@ const Login = () => {
 
     const result = await login(email, password);
     if (result.success) {
+      sessionStorage.setItem('show_welcome_banner', 'true');
       navigate('/');
     } else {
       setError(result.error);

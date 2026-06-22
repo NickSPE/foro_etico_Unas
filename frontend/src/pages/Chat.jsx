@@ -286,7 +286,7 @@ const Chat = () => {
   return (
     <div className="max-w-6xl mx-auto px-4 py-6 flex flex-col md:flex-row gap-6 h-[calc(100vh-80px)]">
       {/* Channels Sidebar List (Left) */}
-      <div className="w-full md:w-80 bg-white border border-brand-border rounded-md shadow-sm p-4 flex flex-col gap-3 shrink-0">
+      <div className="hidden md:flex w-full md:w-80 bg-white border border-brand-border rounded-md shadow-sm p-4 flex-col gap-3 shrink-0">
         <h2 className="text-xs font-black text-brand-dark tracking-wider uppercase flex items-center gap-1.5 border-b border-brand-bg pb-3">
           <BrainCircuit className="w-4 h-4 text-brand-orange" />
           Chats con Bots de Moderación
@@ -387,6 +387,27 @@ const Chat = () => {
               <Key className="w-3.5 h-3.5" /> <span>{hasKey ? 'Ajustes API Key' : 'Conectar Gemini'}</span>
             </button>
           </div>
+        </div>
+
+        {/* Mobile Bot Selector (visible only on mobile) */}
+        <div className="md:hidden border-b border-brand-border bg-white px-4 py-2.5 flex gap-2 overflow-x-auto scrollbar-none shrink-0">
+          {bots.map((b) => {
+            const isSelected = activeBot.id === b.id;
+            return (
+              <button
+                key={b.id}
+                onClick={() => setActiveBot(b)}
+                className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold transition-all border shrink-0 ${
+                  isSelected 
+                    ? 'bg-brand-orange/15 border-brand-orange text-brand-orange' 
+                    : 'bg-slate-50 border-brand-border text-brand-lightText hover:bg-slate-100'
+                }`}
+              >
+                <img src={b.avatar} alt={b.name} className="w-5 h-5 rounded-full border border-brand-border bg-white" />
+                <span>{b.id === 'news' ? 'Bot Noticias' : 'Bot Dilemas'}</span>
+              </button>
+            );
+          })}
         </div>
 
         {/* API Key configuration panel */}

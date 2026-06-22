@@ -10,6 +10,20 @@ const Home = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [sortBy, setSortBy] = useState('recent'); // 'recent' or 'popular'
+  const [showWelcome, setShowWelcome] = useState(false);
+
+  // Check if we should show the welcome banner (e.g. right after login)
+  useEffect(() => {
+    const shouldShow = sessionStorage.getItem('show_welcome_banner') === 'true';
+    if (shouldShow) {
+      setShowWelcome(true);
+      const timer = setTimeout(() => {
+        setShowWelcome(false);
+        sessionStorage.removeItem('show_welcome_banner');
+      }, 4000); // Show for 4 seconds so the user can read it, then auto-destruct
+      return () => clearTimeout(timer);
+    }
+  }, []);
 
   const fetchPosts = async () => {
     setLoading(true);
@@ -84,21 +98,23 @@ const Home = () => {
     <div className="max-w-6xl mx-auto px-4 py-6 flex flex-col lg:flex-row gap-6">
       {/* Main Content (Left) */}
       <div className="flex-1 flex flex-col gap-4">
-        {/* Banner Welcome */}
-        <div className="bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-md p-6 shadow-sm relative overflow-hidden">
-          <div className="relative z-10">
-            <h1 className="text-2xl sm:text-3xl font-extrabold flex items-center gap-2 mb-2">
-              <Sparkles className="w-8 h-8 animate-pulse text-yellow-300" />
-              Bienvenido a EticaDigital
-            </h1>
-            <p className="text-sm sm:text-base max-w-xl text-orange-50 font-medium">
-              El espacio de debate abierto sobre el impacto de la tecnología en la sociedad humana. Comparte tus dilemas, lee análisis objetivos y vota.
-            </p>
+        {/* Banner Welcome (Auto-destructs after 4 seconds) */}
+        {showWelcome && (
+          <div className="bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-md p-6 shadow-sm relative overflow-hidden transition-all duration-500 ease-in-out transform scale-100 opacity-100 animate-fade-in">
+            <div className="relative z-10">
+              <h1 className="text-2xl sm:text-3xl font-extrabold flex items-center gap-2 mb-2">
+                <Sparkles className="w-8 h-8 animate-pulse text-yellow-300" />
+                Bienvenido a EticaDigital
+              </h1>
+              <p className="text-sm sm:text-base max-w-xl text-orange-50 font-medium">
+                El espacio de debate abierto sobre el impacto de la tecnología en la sociedad humana. Comparte tus dilemas, lee análisis objetivos y vota.
+              </p>
+            </div>
+            <div className="absolute right-0 bottom-0 opacity-10 transform translate-x-12 translate-y-12 select-none pointer-events-none">
+              <MessageSquare className="w-72 h-72" />
+            </div>
           </div>
-          <div className="absolute right-0 bottom-0 opacity-10 transform translate-x-12 translate-y-12 select-none pointer-events-none">
-            <MessageSquare className="w-72 h-72" />
-          </div>
-        </div>
+        )}
 
         {/* Filters and Sorting Topbar */}
         <div className="bg-white border border-brand-border rounded-md px-4 py-3 shadow-sm flex items-center justify-between">
