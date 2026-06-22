@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { Shield, LogOut, PlusSquare, Search, Bell, MessageSquare } from 'lucide-react';
+import { Shield, LogOut, PlusSquare, Search, Bell, MessageSquare, ChevronDown, CircleUser } from 'lucide-react';
 
 const Navbar = () => {
   const { user, logout, isAuthenticated } = useAuth();
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
@@ -71,33 +72,79 @@ const Navbar = () => {
               className="flex items-center gap-1.5 bg-brand-orange hover:bg-opacity-90 text-white font-semibold text-xs px-4 py-2 rounded-full transition-all shadow-sm"
             >
               <PlusSquare className="w-3.5 h-3.5" />
-              <span>Publicar</span>
+              <span className="hidden sm:inline">Publicar</span>
             </Link>
             
             <div className="h-5 w-px bg-brand-border"></div>
 
-            {/* User Profile Info */}
-            <Link to={`/user/${user.username}`} className="flex items-center gap-2 hover:opacity-85 transition-opacity">
-              <img 
-                src={user.avatar} 
-                alt={user.username} 
-                className="w-8 h-8 rounded-full border border-brand-border bg-brand-bg shrink-0"
-              />
-              <span className="hidden sm:inline font-semibold text-xs text-brand-dark">
-                u/{user.username}
-              </span>
-            </Link>
+            {/* User Dropdown Menu */}
+            <div className="relative">
+              <button 
+                onClick={() => setDropdownOpen(!dropdownOpen)}
+                className="flex items-center gap-1.5 hover:opacity-85 transition-opacity focus:outline-none"
+                aria-label="User menu"
+              >
+                <img 
+                  src={user.avatar} 
+                  alt={user.username} 
+                  className="w-8 h-8 rounded-full border border-brand-border bg-brand-bg shrink-0"
+                />
+                <span className="hidden sm:inline font-semibold text-xs text-brand-dark">
+                  u/{user.username}
+                </span>
+                <ChevronDown className="w-3.5 h-3.5 text-brand-lightText hidden sm:inline" />
+              </button>
 
-            <button 
-              onClick={() => {
-                logout();
-                navigate('/');
-              }} 
-              className="flex items-center gap-1 text-brand-lightText hover:text-brand-orange transition-colors p-2 rounded-full hover:bg-brand-bg"
-              title="Cerrar sesión"
-            >
-              <LogOut className="w-4.5 h-4.5" />
-            </button>
+              {dropdownOpen && (
+                <>
+                  {/* Overlay to close on outside click */}
+                  <div className="fixed inset-0 z-10" onClick={() => setDropdownOpen(false)}></div>
+                  
+                  {/* Dropdown Card */}
+                  <div className="absolute right-0 mt-2 w-48 bg-white border border-brand-border rounded-md shadow-lg py-1.5 z-20 animate-fade-in text-xs font-bold text-brand-dark">
+                    <div className="px-3 py-2 border-b border-brand-bg text-[10px] text-brand-lightText uppercase tracking-wider">
+                      u/{user.username}
+                    </div>
+                    <Link
+                      to={`/user/${user.username}`}
+                      onClick={() => setDropdownOpen(false)}
+                      className="flex items-center gap-2 px-3 py-2 hover:bg-brand-bg transition-colors"
+                    >
+                      <CircleUser className="w-4 h-4 text-brand-lightText" />
+                      <span>Mi Perfil</span>
+                    </Link>
+                    <Link
+                      to="/crear-post"
+                      onClick={() => setDropdownOpen(false)}
+                      className="flex items-center gap-2 px-3 py-2 hover:bg-brand-bg transition-colors"
+                    >
+                      <PlusSquare className="w-4 h-4 text-brand-lightText" />
+                      <span>Crear Debate</span>
+                    </Link>
+                    <Link
+                      to="/chat"
+                      onClick={() => setDropdownOpen(false)}
+                      className="flex items-center gap-2 px-3 py-2 hover:bg-brand-bg transition-colors"
+                    >
+                      <MessageSquare className="w-4 h-4 text-brand-lightText" />
+                      <span>Chat de Debate</span>
+                    </Link>
+                    <div className="h-px bg-brand-bg my-1"></div>
+                    <button
+                      onClick={() => {
+                        setDropdownOpen(false);
+                        logout();
+                        navigate('/');
+                      }}
+                      className="w-full text-left flex items-center gap-2 px-3 py-2 text-brand-orange hover:bg-brand-bg transition-colors"
+                    >
+                      <LogOut className="w-4 h-4" />
+                      <span>Cerrar Sesión</span>
+                    </button>
+                  </div>
+                </>
+              )}
+            </div>
           </>
         ) : (
           <>
