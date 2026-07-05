@@ -41,35 +41,11 @@ const Chat = () => {
   });
 
   const [isTyping, setIsTyping] = useState(false);
-  const [apiKey, setApiKey] = useState('');
-  const [showKeyPanel, setShowKeyPanel] = useState(true);
   const chatEndRef = useRef(null);
-
-  // Load API key from localStorage or env var on mount
-  useEffect(() => {
-    const envKey = import.meta.env.VITE_GEMINI_API_KEY || '';
-    const savedKey = localStorage.getItem('gemini_api_key') || envKey;
-    setApiKey(savedKey);
-    if (savedKey) {
-      setShowKeyPanel(false);
-    }
-  }, []);
 
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [activeBot, chatHistories, isTyping]);
-
-  const handleSaveApiKey = (e) => {
-    e.preventDefault();
-    localStorage.setItem('gemini_api_key', apiKey.trim());
-    setShowKeyPanel(false);
-  };
-
-  const handleClearApiKey = () => {
-    localStorage.removeItem('gemini_api_key');
-    setApiKey('');
-    setShowKeyPanel(true);
-  };
 
   // Bot auto-publish: Create a post directly in Supabase
   const [triggeringBot, setTriggeringBot] = useState(false);
@@ -159,18 +135,18 @@ const Chat = () => {
       if (msg.includes('privacidad') || msg.includes('datos')) {
         return '**Filtración reciente**: Hackeo masivo expone datos de millones de usuarios debido a APIs inseguras de redes sociales.';
       }
-      return '¡Interesante! Como Bot Noticias en modo local, te sugiero configurar tu **API Key de Gemini** en la barra superior para buscar noticias actuales en tiempo real usando Google.';
+      return '¡Interesante! Los bots de moderación están listos para traerte más noticias de actualidad sobre ética digital. ¿Hay algún otro tema del que te gustaría hablar?';
     } else {
       if (msg.includes('auto') || msg.includes('dilema')) {
         return 'Un vehículo autónomo debe decidir entre salvar a 5 peatones cruzando sin luz verde o sacrificar al pasajero en un choque. ¿Qué valor ético debe imperar?';
       }
-      return 'He registrado tu enfoque ético. Agrega tu **API Key de Gemini** en la barra superior para entablar un debate filosófico real conmigo.';
+      return 'He registrado tu enfoque ético. Analizando bajo teorías morales, ¿consideras que las decisiones automatizadas de IA deberían ser supervisadas siempre por un humano?';
     }
   };
 
   // Call the Gemini API with search grounding
   const callGeminiApi = async (bot, userMsg) => {
-    const currentApiKey = apiKey.trim() || import.meta.env.VITE_GEMINI_API_KEY || '';
+    const currentApiKey = import.meta.env.VITE_GEMINI_API_KEY || '';
     try {
       const response = await fetch(
         `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${currentApiKey}`,
@@ -192,7 +168,7 @@ const Chat = () => {
       return text;
     } catch (error) {
       console.error('Error calling Gemini API:', error);
-      return `❌ **Error al conectar con la IA**: No se pudo obtener respuesta de Gemini. Revisa si tu clave de API es válida o si estás bloqueado por límites de cuota.\n\n*Recurso temporal: Volviendo al modo simulación local.*`;
+      return `❌ **Error al conectar con la IA**: No se pudo obtener respuesta de Gemini. Por favor, asegúrate de que la clave de API global esté configurada en las variables de entorno.\n\n*Recurso temporal: Volviendo al modo simulación local.*`;
     }
   };
 
@@ -213,7 +189,7 @@ const Chat = () => {
     setIsTyping(true);
 
     let responseText = '';
-    const currentApiKey = apiKey.trim() || import.meta.env.VITE_GEMINI_API_KEY || '';
+    const currentApiKey = import.meta.env.VITE_GEMINI_API_KEY || '';
     
     if (currentApiKey) {
       responseText = await callGeminiApi(activeBot, currentInput);
@@ -281,7 +257,7 @@ const Chat = () => {
     setInputs(prev => ({ ...prev, [activeBot.id]: suggestedText }));
   };
 
-  const hasKey = !!(apiKey.trim() || import.meta.env.VITE_GEMINI_API_KEY);
+  const hasKey = !!import.meta.env.VITE_GEMINI_API_KEY;
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-6 flex flex-col md:flex-row gap-6 h-[calc(100vh-80px)]">
@@ -318,21 +294,13 @@ const Chat = () => {
         
         {/* Connection status card */}
         <div className="bg-brand-bg rounded-md p-3 border border-brand-border text-center text-xs font-bold">
-          {hasKey ? (
-            <div className="text-emerald-600 flex flex-col items-center gap-1">
-              <CheckCircle className="w-5 h-5 text-emerald-500" />
-              <span>Conexión Activa</span>
-              <span className="text-[9px] bg-emerald-100 px-2 py-0.5 rounded-full uppercase tracking-wider text-emerald-800 flex items-center gap-1 font-black">
-                <Globe className="w-2.5 h-2.5" /> Gemini Activo
-              </span>
-            </div>
-          ) : (
-            <div className="text-brand-lightText flex flex-col items-center gap-1">
-              <AlertTriangle className="w-5 h-5 text-brand-orange" />
-              <span>Modo Local / Simulación</span>
-              <span className="text-[9px] text-brand-lightText/85 font-semibold">Configura una clave de API para activar la IA real</span>
-            </div>
-          )}
+          <div className="text-emerald-600 flex flex-col items-center gap-1">
+            <CheckCircle className="w-5 h-5 text-emerald-500" />
+            <span>Asistente IA Integrado</span>
+            <span className="text-[9px] bg-emerald-100 px-2 py-0.5 rounded-full uppercase tracking-wider text-emerald-800 flex items-center gap-1 font-black">
+              <Globe className="w-2.5 h-2.5" /> Gemini 2.5 Active
+            </span>
+          </div>
         </div>
 
         {/* Bot auto-publish */}
@@ -361,7 +329,7 @@ const Chat = () => {
           )}
         </div>
       </div>
-
+ 
       {/* Main Chat Screen (Right) */}
       <div className="flex-1 bg-white border border-brand-border rounded-md shadow-sm overflow-hidden flex flex-col h-full relative">
         {/* Chat Header */}
@@ -376,16 +344,13 @@ const Chat = () => {
               <p className="text-[10px] text-brand-lightText font-semibold mt-0.5">{activeBot.description}</p>
             </div>
           </div>
-
+ 
           <div className="flex items-center gap-2">
             {chatHistories[activeBot.id].length > 1 && (
               <button onClick={handlePublishChat} className="flex items-center gap-1.5 px-3 py-1.5 bg-brand-orange text-white hover:bg-opacity-95 rounded-md text-xs font-black transition-all shadow-sm">
                 <Sparkles className="w-3.5 h-3.5" /> <span>Publicar Debate</span>
               </button>
             )}
-            <button onClick={() => setShowKeyPanel(!showKeyPanel)} className="flex items-center gap-1 px-3 py-1.5 border border-brand-border hover:bg-brand-bg rounded-md text-xs font-bold text-brand-lightText hover:text-brand-dark transition-all">
-              <Key className="w-3.5 h-3.5" /> <span>{hasKey ? 'Ajustes API Key' : 'Conectar Gemini'}</span>
-            </button>
           </div>
         </div>
 
