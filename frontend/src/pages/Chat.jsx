@@ -43,6 +43,22 @@ const Chat = () => {
   const [isTyping, setIsTyping] = useState(false);
   const chatEndRef = useRef(null);
 
+  // API Key management states and handlers
+  const [apiKey, setApiKey] = useState(() => localStorage.getItem('gemini_api_key') || '');
+  const [showKeyPanel, setShowKeyPanel] = useState(!localStorage.getItem('gemini_api_key'));
+
+  const handleSaveApiKey = (e) => {
+    e.preventDefault();
+    localStorage.setItem('gemini_api_key', apiKey.trim());
+    setShowKeyPanel(false);
+  };
+
+  const handleClearApiKey = () => {
+    localStorage.removeItem('gemini_api_key');
+    setApiKey('');
+    setShowKeyPanel(true);
+  };
+
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [activeBot, chatHistories, isTyping]);
@@ -146,7 +162,7 @@ const Chat = () => {
 
   // Call the Gemini API with search grounding
   const callGeminiApi = async (bot, userMsg) => {
-    const currentApiKey = import.meta.env.VITE_GEMINI_API_KEY || '';
+    const currentApiKey = apiKey.trim() || import.meta.env.VITE_GEMINI_API_KEY || '';
     try {
       const response = await fetch(
         `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${currentApiKey}`,
@@ -189,7 +205,7 @@ const Chat = () => {
     setIsTyping(true);
 
     let responseText = '';
-    const currentApiKey = import.meta.env.VITE_GEMINI_API_KEY || '';
+    const currentApiKey = apiKey.trim() || import.meta.env.VITE_GEMINI_API_KEY || '';
     
     if (currentApiKey) {
       responseText = await callGeminiApi(activeBot, currentInput);
@@ -257,7 +273,7 @@ const Chat = () => {
     setInputs(prev => ({ ...prev, [activeBot.id]: suggestedText }));
   };
 
-  const hasKey = !!import.meta.env.VITE_GEMINI_API_KEY;
+  const hasKey = !!(apiKey.trim() || import.meta.env.VITE_GEMINI_API_KEY);
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-6 flex flex-col md:flex-row gap-6 h-[calc(100vh-80px)]">
@@ -346,6 +362,18 @@ const Chat = () => {
           </div>
  
           <div className="flex items-center gap-2">
+            <button 
+              onClick={() => setShowKeyPanel(!showKeyPanel)} 
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-black transition-all shadow-sm border ${
+                showKeyPanel 
+                  ? 'bg-slate-200 text-slate-700 border-slate-300' 
+                  : 'bg-white text-brand-dark border-brand-border hover:bg-slate-50'
+              }`}
+            >
+              <Key className="w-3.5 h-3.5 text-brand-orange" />
+              <span>{showKeyPanel ? 'Ocultar Config' : 'Configurar Clave'}</span>
+            </button>
+
             {chatHistories[activeBot.id].length > 1 && (
               <button onClick={handlePublishChat} className="flex items-center gap-1.5 px-3 py-1.5 bg-brand-orange text-white hover:bg-opacity-95 rounded-md text-xs font-black transition-all shadow-sm">
                 <Sparkles className="w-3.5 h-3.5" /> <span>Publicar Debate</span>
