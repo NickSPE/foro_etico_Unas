@@ -45,7 +45,7 @@ const Chat = () => {
 
   // API Key management states and handlers
   const [apiKey, setApiKey] = useState(() => localStorage.getItem('gemini_api_key') || '');
-  const [showKeyPanel, setShowKeyPanel] = useState(!localStorage.getItem('gemini_api_key'));
+  const [showKeyPanel, setShowKeyPanel] = useState(!localStorage.getItem('gemini_api_key') && !import.meta.env.VITE_GEMINI_API_KEY);
 
   const handleSaveApiKey = (e) => {
     e.preventDefault();
@@ -310,13 +310,23 @@ const Chat = () => {
         
         {/* Connection status card */}
         <div className="bg-brand-bg rounded-md p-3 border border-brand-border text-center text-xs font-bold">
-          <div className="text-emerald-600 flex flex-col items-center gap-1">
-            <CheckCircle className="w-5 h-5 text-emerald-500" />
-            <span>Asistente IA Integrado</span>
-            <span className="text-[9px] bg-emerald-100 px-2 py-0.5 rounded-full uppercase tracking-wider text-emerald-800 flex items-center gap-1 font-black">
-              <Globe className="w-2.5 h-2.5" /> Gemini 2.5 Active
-            </span>
-          </div>
+          {hasKey ? (
+            <div className="text-emerald-600 flex flex-col items-center gap-1">
+              <CheckCircle className="w-5 h-5 text-emerald-500" />
+              <span>Asistente IA Integrado</span>
+              <span className="text-[9px] bg-emerald-100 px-2 py-0.5 rounded-full uppercase tracking-wider text-emerald-800 flex items-center gap-1 font-black">
+                <Globe className="w-2.5 h-2.5" /> Gemini Active
+              </span>
+            </div>
+          ) : (
+            <div className="text-amber-600 flex flex-col items-center gap-1">
+              <AlertTriangle className="w-5 h-5 text-amber-500 animate-pulse" />
+              <span>Modo Simulación Local</span>
+              <span className="text-[9px] bg-amber-100 px-2 py-0.5 rounded-full uppercase tracking-wider text-amber-800 flex items-center gap-1 font-black">
+                Sin API Key
+              </span>
+            </div>
+          )}
         </div>
 
         {/* Bot auto-publish */}
