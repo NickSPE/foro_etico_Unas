@@ -372,18 +372,6 @@ const Chat = () => {
           </div>
  
           <div className="flex items-center gap-2">
-            <button 
-              onClick={() => setShowKeyPanel(!showKeyPanel)} 
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-black transition-all shadow-sm border ${
-                showKeyPanel 
-                  ? 'bg-slate-200 text-slate-700 border-slate-300' 
-                  : 'bg-white text-brand-dark border-brand-border hover:bg-slate-50'
-              }`}
-            >
-              <Key className="w-3.5 h-3.5 text-brand-orange" />
-              <span>{showKeyPanel ? 'Ocultar Config' : 'Configurar Clave'}</span>
-            </button>
-
             {chatHistories[activeBot.id].length > 1 && (
               <button onClick={handlePublishChat} className="flex items-center gap-1.5 px-3 py-1.5 bg-brand-orange text-white hover:bg-opacity-95 rounded-md text-xs font-black transition-all shadow-sm">
                 <Sparkles className="w-3.5 h-3.5" /> <span>Publicar Debate</span>
