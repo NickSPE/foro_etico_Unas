@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { Shield, AlertCircle } from 'lucide-react';
+import PasswordInput from '../components/PasswordInput';
 
 const Login = () => {
   const { login, loading } = useAuth();
@@ -66,17 +67,12 @@ const Login = () => {
             />
           </div>
 
-          <div className="flex flex-col gap-1.5">
-            <label className="text-xs font-bold text-brand-lightText uppercase">Contraseña</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="••••••••••••"
-              className="w-full bg-slate-50 border border-brand-border rounded-md px-3.5 py-2 text-sm focus:outline-none focus:border-brand-blue focus:bg-white transition-all shadow-inner"
-              required
-            />
-          </div>
+          <PasswordInput
+            label="Contraseña"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
 
           <button
             type="submit"

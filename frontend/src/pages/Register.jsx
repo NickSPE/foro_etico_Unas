@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { Shield, AlertCircle, CheckCircle2 } from 'lucide-react';
+import PasswordInput from '../components/PasswordInput';
 
 const Register = () => {
   const { register, loading } = useAuth();
@@ -120,29 +121,21 @@ const Register = () => {
             />
           </div>
 
-          <div className="flex flex-col gap-1">
-            <label className="text-xs font-bold text-brand-lightText uppercase">Contraseña</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Mínimo 6 caracteres"
-              className="w-full bg-slate-50 border border-brand-border rounded-md px-3 py-2 text-sm focus:outline-none focus:border-brand-blue focus:bg-white transition-all shadow-inner"
-              required
-            />
-          </div>
+          <PasswordInput
+            label="Contraseña"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Mínimo 6 caracteres"
+            required
+          />
 
-          <div className="flex flex-col gap-1">
-            <label className="text-xs font-bold text-brand-lightText uppercase">Confirmar Contraseña</label>
-            <input
-              type="password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              placeholder="Repite la contraseña"
-              className="w-full bg-slate-50 border border-brand-border rounded-md px-3 py-2 text-sm focus:outline-none focus:border-brand-blue focus:bg-white transition-all shadow-inner"
-              required
-            />
-          </div>
+          <PasswordInput
+            label="Confirmar Contraseña"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            placeholder="Repite la contraseña"
+            required
+          />
 
           <button
             type="submit"
