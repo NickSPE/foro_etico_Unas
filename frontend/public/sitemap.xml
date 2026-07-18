@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Página principal -->
+  <url>
+    <loc>https://foro-etico-unas-nlha.vercel.app/</loc>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <!-- Chat con Bots de IA -->
+  <url>
+    <loc>https://foro-etico-unas-nlha.vercel.app/chat</loc>
+    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <!-- Auditoría Ética -->
+  <url>
+    <loc>https://foro-etico-unas-nlha.vercel.app/auditoria</loc>
+    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <!-- Páginas de Autenticación -->
+  <url>
+    <loc>https://foro-etico-unas-nlha.vercel.app/login</loc>
+    <priority>0.5</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://foro-etico-unas-nlha.vercel.app/registro</loc>
+    <priority>0.5</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+</urlset>

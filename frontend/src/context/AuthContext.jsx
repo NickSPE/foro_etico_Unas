@@ -30,6 +30,11 @@ export const AuthProvider = ({ children }) => {
 
   // Listen for auth state changes (login, logout, token refresh, page reload)
   useEffect(() => {
+    if (!supabase) {
+      setLoading(false);
+      return;
+    }
+
     // Get initial session
     supabase.auth.getSession().then(async ({ data: { session: currentSession } }) => {
       setSession(currentSession);

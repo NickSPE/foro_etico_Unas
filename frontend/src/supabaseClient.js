@@ -9,4 +9,20 @@ if (supabaseUrl.endsWith('/rest/v1/')) {
 
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+let client = null;
+let configError = null;
+
+if (!supabaseUrl || !supabaseAnonKey) {
+  configError = 'Variables de entorno de Supabase incompletas o ausentes.';
+} else {
+  try {
+    client = createClient(supabaseUrl, supabaseAnonKey);
+  } catch (err) {
+    configError = err.message;
+  }
+}
+
+export const supabase = client;
+export const isSupabaseConfigured = !!client;
+export const supabaseConfigError = configError;
+
