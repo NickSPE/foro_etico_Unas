@@ -1,13 +1,13 @@
 import { createClient } from '@supabase/supabase-js';
 
-let supabaseUrl = import.meta.env.VITE_SUPABASE_URL || '';
+let supabaseUrl = (import.meta.env.VITE_SUPABASE_URL || '').trim().replace(/[\r\n]/g, '');
 if (supabaseUrl.endsWith('/rest/v1/')) {
   supabaseUrl = supabaseUrl.slice(0, -9);
 } else if (supabaseUrl.endsWith('/rest/v1')) {
   supabaseUrl = supabaseUrl.slice(0, -8);
 }
 
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+const supabaseAnonKey = (import.meta.env.VITE_SUPABASE_ANON_KEY || '').trim().replace(/[\r\n]/g, '');
 
 let client = null;
 let configError = null;
