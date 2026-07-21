@@ -1,6 +1,16 @@
 import { createClient } from '@supabase/supabase-js';
 
 let supabaseUrl = (import.meta.env.VITE_SUPABASE_URL || '').trim().replace(/[\r\n]/g, '');
+
+if (supabaseUrl === 'PROXY') {
+  if (typeof window !== 'undefined') {
+    supabaseUrl = `${window.location.origin}/supabase-api`;
+  } else {
+    // Fallback para scripts en Node.js
+    supabaseUrl = 'https://muezqfwdsjehyxjwpzyi.supabase.co';
+  }
+}
+
 if (supabaseUrl.endsWith('/rest/v1/')) {
   supabaseUrl = supabaseUrl.slice(0, -9);
 } else if (supabaseUrl.endsWith('/rest/v1')) {
